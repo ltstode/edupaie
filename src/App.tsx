@@ -20,6 +20,12 @@ import EmployeeContract from "./pages/employees/EmployeeContract";
 import EmployeeCertificate from "./pages/employees/EmployeeCertificate";
 import PayrollPage from "./pages/payroll/PayrollPage";
 import PayrollDetail from "./pages/payroll/PayrollDetail";
+import ReportsPage from "./pages/reports/ReportsPage";
+import ReportDetail from "./pages/reports/ReportDetail";
+import PaymentsPage from "./pages/payments/PaymentsPage";
+import PaymentDetail from "./pages/payments/PaymentDetail";
+import ProfilePage from "./pages/profile/ProfilePage";
+import ProfileSettings from "./pages/profile/ProfileSettings";
 
 const queryClient = new QueryClient();
 
@@ -84,6 +90,42 @@ const App = () => (
               <Route path="/payroll/:id" element={
                 <ProtectedRoute>
                   <PayrollDetail />
+                </ProtectedRoute>
+              } />
+              
+              {/* Nouvelles routes pour les rapports */}
+              <Route path="/reports" element={
+                <ProtectedRoute>
+                  <ReportsPage />
+                </ProtectedRoute>
+              } />
+              <Route path="/reports/:id" element={
+                <ProtectedRoute>
+                  <ReportDetail />
+                </ProtectedRoute>
+              } />
+              
+              {/* Nouvelles routes pour les paiements */}
+              <Route path="/payments" element={
+                <ProtectedRoute>
+                  <PaymentsPage />
+                </ProtectedRoute>
+              } />
+              <Route path="/payments/:id" element={
+                <ProtectedRoute>
+                  <PaymentDetail />
+                </ProtectedRoute>
+              } />
+              
+              {/* Nouvelles routes pour le profil */}
+              <Route path="/profile" element={
+                <ProtectedRoute>
+                  <ProfilePage />
+                </ProtectedRoute>
+              } />
+              <Route path="/profile/settings" element={
+                <ProtectedRoute>
+                  <ProfileSettings />
                 </ProtectedRoute>
               } />
               
