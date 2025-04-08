@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,7 +23,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { useEmployees } from "../../contexts/EmployeeContext";
+import { useEmployees, Employee } from "../../contexts/EmployeeContext";
 import { Navbar } from "../../components/Navbar";
 import { toast } from "sonner";
 
@@ -94,11 +93,25 @@ const EmployeeForm = () => {
     try {
       setIsSubmitting(true);
       
-      if (isEditMode) {
+      // Nous nous assurons que toutes les propriétés sont présentes
+      // En créant un nouvel objet qui respecte le type Omit<Employee, "id">
+      const employeeData: Omit<Employee, "id"> = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phone: data.phone,
+        position: data.position,
+        department: data.department,
+        salary: data.salary,
+        hireDate: data.hireDate,
+        status: data.status
+      };
+      
+      if (isEditMode && id) {
         updateEmployee(id, data);
         toast.success("Employé mis à jour avec succès");
       } else {
-        addEmployee(data);
+        addEmployee(employeeData);
         toast.success("Employé ajouté avec succès");
       }
       
