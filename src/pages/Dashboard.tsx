@@ -5,8 +5,26 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { useEmployees } from "../contexts/EmployeeContext";
 
 const Dashboard = () => {
+  const { user } = useAuth();
+  const { employees } = useEmployees();
+  
+  // Calculer le total des salaires
+  const totalSalaries = employees.reduce((sum, employee) => sum + employee.salary, 0);
+  
+  // Formatage des montants
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('fr-FR', {
+      style: 'currency',
+      currency: 'XOF',
+      maximumFractionDigits: 0
+    }).format(amount);
+  };
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -14,7 +32,7 @@ const Dashboard = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
           <div>
             <h1 className="text-3xl font-bold tracking-tight">Tableau de bord</h1>
-            <p className="text-muted-foreground">Aperçu de la gestion financière de votre école</p>
+            <p className="text-muted-foreground">Bienvenue, {user?.name} | {user?.schoolName}</p>
           </div>
           <div className="mt-4 md:mt-0 flex space-x-2">
             <Button className="flex items-center gap-2">
@@ -31,9 +49,9 @@ const Dashboard = () => {
               <DollarSign className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">6,450,000 FCFA</div>
+              <div className="text-2xl font-bold">{formatCurrency(totalSalaries)}</div>
               <p className="text-xs text-muted-foreground">
-                +2.1% par rapport au mois dernier
+                {employees.length} employés actifs
               </p>
             </CardContent>
           </Card>
@@ -49,18 +67,20 @@ const Dashboard = () => {
               </p>
             </CardContent>
           </Card>
-          <Card className="glass-card">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Personnel</CardTitle>
-              <Users className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">43</div>
-              <p className="text-xs text-muted-foreground">
-                +2 nouveaux ce mois-ci
-              </p>
-            </CardContent>
-          </Card>
+          <Link to="/employees" className="block">
+            <Card className="glass-card h-full hover:bg-accent/40 transition-colors">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Personnel</CardTitle>
+                <Users className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{employees.length}</div>
+                <p className="text-xs text-muted-foreground">
+                  Gérer les employés
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
           <Card className="glass-card">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Taux de paiement</CardTitle>
@@ -155,8 +175,8 @@ const Dashboard = () => {
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="font-medium">6,450,000 FCFA</p>
-                      <p className="text-xs text-muted-foreground">43 employés</p>
+                      <p className="font-medium">{formatCurrency(totalSalaries)}</p>
+                      <p className="text-xs text-muted-foreground">{employees.length} employés</p>
                     </div>
                   </div>
                   

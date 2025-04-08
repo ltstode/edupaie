@@ -7,14 +7,19 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { useAuth } from "../contexts/AuthContext";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [schoolName, setSchoolName] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { register, isLoading } = useAuth();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulation d'inscription
-    console.log("Tentative d'inscription");
+    await register(schoolName, name, email, password);
   };
 
   return (
@@ -48,6 +53,8 @@ const Register = () => {
                   id="schoolName"
                   placeholder="École Elite"
                   className="pl-10"
+                  value={schoolName}
+                  onChange={(e) => setSchoolName(e.target.value)}
                   required
                 />
               </div>
@@ -60,6 +67,8 @@ const Register = () => {
                   id="name"
                   placeholder="Jean Dupont"
                   className="pl-10"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   required
                 />
               </div>
@@ -73,6 +82,8 @@ const Register = () => {
                   placeholder="exemple@ecole.com"
                   type="email"
                   className="pl-10"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
@@ -85,6 +96,8 @@ const Register = () => {
                   id="password"
                   type={showPassword ? "text" : "password"}
                   className="pl-10 pr-10"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
                 <Button
@@ -101,8 +114,8 @@ const Register = () => {
                 </Button>
               </div>
             </div>
-            <Button type="submit" className="w-full">
-              S'inscrire
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? "Inscription en cours..." : "S'inscrire"}
             </Button>
           </form>
           <div className="mt-4 text-center text-sm">
