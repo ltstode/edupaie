@@ -1,0 +1,113 @@
+
+import { useState } from "react";
+import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { ThemeToggle } from "@/components/ThemeToggle";
+
+const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Simulation de connexion
+    console.log("Tentative de connexion");
+  };
+
+  return (
+    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-secondary/30 px-4 py-12">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
+      
+      <Link to="/" className="mb-8">
+        <div className="font-bold text-2xl text-primary mb-2">
+          EduPaie
+        </div>
+      </Link>
+      
+      <Card className="w-full max-w-md animate-scale-in glass-card">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-2xl font-bold text-center">
+            Connexion
+          </CardTitle>
+          <CardDescription className="text-center">
+            Entrez vos identifiants pour accéder à votre compte
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="email">Adresse e-mail</Label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Input
+                  id="email"
+                  placeholder="exemple@ecole.com"
+                  type="email"
+                  className="pl-10"
+                  required
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="password">Mot de passe</Label>
+                <Link
+                  to="/forgot-password"
+                  className="text-sm text-primary hover:underline"
+                >
+                  Mot de passe oublié?
+                </Link>
+              </div>
+              <div className="relative">
+                <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  className="pl-10 pr-10"
+                  required
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-0 top-0 h-full px-3 py-2 text-muted-foreground"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  <span className="sr-only">
+                    {showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+                  </span>
+                </Button>
+              </div>
+            </div>
+            <Button type="submit" className="w-full">
+              Se connecter
+            </Button>
+          </form>
+          <div className="mt-4 text-center text-sm">
+            Ou continuez avec
+          </div>
+          <div className="mt-3 flex gap-2">
+            <Button variant="outline" className="w-full">Google</Button>
+            <Button variant="outline" className="w-full">Microsoft</Button>
+          </div>
+        </CardContent>
+        <CardFooter className="justify-center">
+          <div className="text-sm text-muted-foreground">
+            Vous n'avez pas encore de compte?{" "}
+            <Link to="/register" className="text-primary font-medium hover:underline">
+              Inscrivez-vous
+            </Link>
+          </div>
+        </CardFooter>
+      </Card>
+    </div>
+  );
+};
+
+export default Login;
