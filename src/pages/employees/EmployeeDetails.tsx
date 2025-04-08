@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { 
   ArrowLeft, 
@@ -13,7 +13,10 @@ import {
   Building, 
   DollarSign,
   Clock,
-  FileText
+  FileText,
+  Upload,
+  Camera,
+  CheckCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -27,14 +30,20 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { toast } from "sonner";
 import { Navbar } from "../../components/Navbar";
 import { useEmployees } from "../../contexts/EmployeeContext";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const EmployeeDetails = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { getEmployee, deleteEmployee } = useEmployees();
+  const { getEmployee, deleteEmployee, uploadAvatar } = useEmployees();
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [photoDialogOpen, setPhotoDialogOpen] = useState(false);
+  const [uploadingPhoto, setUploadingPhoto] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   
   const employee = getEmployee(id || "");
   
@@ -81,6 +90,49 @@ const EmployeeDetails = () => {
     navigate("/employees");
   };
   
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    
+    // Vérifier la taille du fichier (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("La taille du fichier doit être inférieure à 5MB");
+      return;
+    }
+    
+    // Vérifier le type du fichier
+    if (!['image/jpeg', 'image/png', 'image/gif', 'image/webp'].includes(file.type)) {
+      toast.error("Seules les images JPEG, PNG, GIF et WEBP sont acceptées");
+      return;
+    }
+    
+    // Créer une URL d'aperçu
+    const objectUrl = URL.createObjectURL(file);
+    setPreviewUrl(objectUrl);
+  };
+  
+  const handleUploadPhoto = async () => {
+    const file = fileInputRef.current?.files?.[0];
+    if (!file) return;
+    
+    setUploadingPhoto(true);
+    
+    try {
+      await uploadAvatar(employee.id, file);
+      toast.success("Photo de profil mise à jour avec succès");
+      setPhotoDialogOpen(false);
+    } catch (error) {
+      console.error("Erreur lors du téléchargement de la photo:", error);
+      toast.error("Erreur lors du téléchargement de la photo");
+    } finally {
+      setUploadingPhoto(false);
+      setPreviewUrl(null);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    }
+  };
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -118,7 +170,7 @@ const EmployeeDetails = () => {
         </div>
         
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <Card className="glass-card">
+          <Card className="glass-card animate-fade-in">
             <CardHeader>
               <CardTitle>Informations personnelles</CardTitle>
               <CardDescription>Coordonnées et détails de l'employé</CardDescription>
@@ -126,8 +178,19 @@ const EmployeeDetails = () => {
             <CardContent>
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-center">
-                  <div className="h-24 w-24 rounded-full bg-primary/10 flex items-center justify-center text-primary text-2xl font-medium">
-                    {employee.firstName[0]}{employee.lastName[0]}
+                  <div className="relative group">
+                    <Avatar className="h-24 w-24 cursor-pointer transition-all group-hover:opacity-80" onClick={() => setPhotoDialogOpen(true)}>
+                      <AvatarImage src={employee.avatar} alt={`${employee.firstName} ${employee.lastName}`} />
+                      <AvatarFallback className="text-2xl font-medium">
+                        {employee.firstName[0]}{employee.lastName[0]}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div 
+                      className="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+                      onClick={() => setPhotoDialogOpen(true)}
+                    >
+                      <Camera className="h-6 w-6 text-white" />
+                    </div>
                   </div>
                 </div>
                 
@@ -170,7 +233,7 @@ const EmployeeDetails = () => {
             </CardContent>
           </Card>
           
-          <Card className="glass-card">
+          <Card className="glass-card animate-fade-in transition-all duration-300 hover:shadow-md">
             <CardHeader>
               <CardTitle>Informations professionnelles</CardTitle>
               <CardDescription>Poste et département</CardDescription>
@@ -214,24 +277,36 @@ const EmployeeDetails = () => {
             </CardContent>
           </Card>
           
-          <Card className="glass-card">
+          <Card className="glass-card animate-fade-in transition-all duration-300 hover:shadow-md">
             <CardHeader>
               <CardTitle>Documents</CardTitle>
               <CardDescription>Fiches de paie et contrats</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col gap-3">
-                <Button variant="outline" className="w-full justify-start">
+                <Button 
+                  variant="outline" 
+                  className="w-full justify-start transition-colors hover:bg-green-100 dark:hover:bg-green-900/20 hover:text-green-700 dark:hover:text-green-400 hover:border-green-500"
+                  onClick={() => navigate(`/payroll/${employee.id}`)}
+                >
                   <FileText className="mr-2 h-4 w-4" />
                   Générer fiche de paie
                 </Button>
                 
-                <Button variant="outline" className="w-full justify-start">
+                <Button 
+                  variant="outline" 
+                  className="w-full justify-start transition-colors hover:bg-blue-100 dark:hover:bg-blue-900/20 hover:text-blue-700 dark:hover:text-blue-400 hover:border-blue-500"
+                  onClick={() => navigate(`/employees/${employee.id}/contract`)}
+                >
                   <FileText className="mr-2 h-4 w-4" />
                   Voir le contrat
                 </Button>
                 
-                <Button variant="outline" className="w-full justify-start">
+                <Button 
+                  variant="outline" 
+                  className="w-full justify-start transition-colors hover:bg-amber-100 dark:hover:bg-amber-900/20 hover:text-amber-700 dark:hover:text-amber-400 hover:border-amber-500"
+                  onClick={() => navigate(`/employees/${employee.id}/certificate`)}
+                >
                   <FileText className="mr-2 h-4 w-4" />
                   Attestation de travail
                 </Button>
@@ -243,7 +318,7 @@ const EmployeeDetails = () => {
       
       {/* Dialogue de confirmation de suppression */}
       <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <DialogContent>
+        <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>Confirmer la suppression</DialogTitle>
             <DialogDescription>
@@ -256,6 +331,87 @@ const EmployeeDetails = () => {
             </Button>
             <Button variant="destructive" onClick={handleDelete}>
               Supprimer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      
+      {/* Dialogue pour charger une photo */}
+      <Dialog open={photoDialogOpen} onOpenChange={setPhotoDialogOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>Charger une photo de profil</DialogTitle>
+            <DialogDescription>
+              Choisissez une image pour la photo de profil. JPG, PNG ou GIF acceptés.
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="grid gap-4 py-4">
+            <div className="flex justify-center">
+              {previewUrl ? (
+                <div className="relative">
+                  <img 
+                    src={previewUrl} 
+                    alt="Aperçu" 
+                    className="h-40 w-40 object-cover rounded-full border-2 border-primary"
+                  />
+                  <Button 
+                    className="absolute top-0 right-0 h-8 w-8 rounded-full p-0"
+                    size="icon"
+                    variant="secondary"
+                    onClick={() => setPreviewUrl(null)}
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </div>
+              ) : (
+                <div className="h-40 w-40 rounded-full border-2 border-dashed flex items-center justify-center bg-muted">
+                  <Upload className="h-10 w-10 text-muted-foreground" />
+                </div>
+              )}
+            </div>
+            
+            <div>
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+              />
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={() => fileInputRef.current?.click()}
+              >
+                Sélectionner une image
+              </Button>
+            </div>
+          </div>
+          
+          <DialogFooter>
+            <Button variant="outline" onClick={() => {
+              setPhotoDialogOpen(false);
+              setPreviewUrl(null);
+            }}>
+              Annuler
+            </Button>
+            <Button 
+              disabled={!previewUrl || uploadingPhoto}
+              onClick={handleUploadPhoto}
+              className="bg-green-600 hover:bg-green-700"
+            >
+              {uploadingPhoto ? (
+                <span className="flex items-center">
+                  <span className="animate-spin h-4 w-4 mr-2 border-2 border-white border-t-transparent rounded-full"></span>
+                  Téléchargement...
+                </span>
+              ) : (
+                <span className="flex items-center">
+                  <CheckCircle className="mr-2 h-4 w-4" />
+                  Confirmer
+                </span>
+              )}
             </Button>
           </DialogFooter>
         </DialogContent>

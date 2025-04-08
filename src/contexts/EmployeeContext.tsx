@@ -24,6 +24,7 @@ interface EmployeeContextType {
   addEmployee: (employee: Omit<Employee, "id">) => void;
   updateEmployee: (id: string, employee: Partial<Employee>) => void;
   deleteEmployee: (id: string) => void;
+  uploadAvatar: (id: string, file: File) => Promise<void>;
 }
 
 const EmployeeContext = createContext<EmployeeContextType | null>(null);
@@ -52,7 +53,8 @@ const mockEmployees: Employee[] = [
     department: "Sciences",
     salary: 450000,
     hireDate: "2020-09-01",
-    status: "active"
+    status: "active",
+    avatar: "/placeholder.svg"
   },
   {
     id: "2",
@@ -64,7 +66,8 @@ const mockEmployees: Employee[] = [
     department: "Lettres",
     salary: 420000,
     hireDate: "2019-09-01",
-    status: "active"
+    status: "active",
+    avatar: "/placeholder.svg"
   },
   {
     id: "3",
@@ -76,7 +79,8 @@ const mockEmployees: Employee[] = [
     department: "Administration",
     salary: 750000,
     hireDate: "2018-01-15",
-    status: "active"
+    status: "active",
+    avatar: "/placeholder.svg"
   }
 ];
 
@@ -126,7 +130,8 @@ export const EmployeeProvider: React.FC<EmployeeProviderProps> = ({ children }) 
     try {
       const newEmployee = {
         ...employee,
-        id: Date.now().toString()
+        id: Date.now().toString(),
+        avatar: employee.avatar || "/placeholder.svg"
       };
       
       setEmployees(prev => [...prev, newEmployee]);
@@ -164,6 +169,35 @@ export const EmployeeProvider: React.FC<EmployeeProviderProps> = ({ children }) 
     }
   };
 
+  // Fonction pour télécharger un avatar (simulation)
+  const uploadAvatar = async (id: string, file: File): Promise<void> => {
+    try {
+      // En environnement réel, on utiliserait une API pour stocker l'image
+      // Ici, on simule en convertissant l'image en base64
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          if (e.target?.result) {
+            const base64Image = e.target.result.toString();
+            updateEmployee(id, { avatar: base64Image });
+            resolve();
+          } else {
+            reject(new Error("Échec de la conversion de l'image"));
+          }
+        };
+        reader.onerror = () => {
+          reject(new Error("Échec du chargement de l'image"));
+        };
+        reader.readAsDataURL(file);
+      });
+    } catch (error) {
+      setError("Erreur lors du téléchargement de l'avatar");
+      toast.error("Erreur lors du téléchargement de l'avatar");
+      console.error(error);
+      throw error;
+    }
+  };
+
   return (
     <EmployeeContext.Provider
       value={{
@@ -173,7 +207,8 @@ export const EmployeeProvider: React.FC<EmployeeProviderProps> = ({ children }) 
         getEmployee,
         addEmployee,
         updateEmployee,
-        deleteEmployee
+        deleteEmployee,
+        uploadAvatar
       }}
     >
       {children}

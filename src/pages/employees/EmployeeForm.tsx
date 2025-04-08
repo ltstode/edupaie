@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { ArrowLeft, Save } from "lucide-react";
+import { ArrowLeft, Save, Upload, Camera, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -26,6 +27,7 @@ import { Separator } from "@/components/ui/separator";
 import { useEmployees, Employee } from "../../contexts/EmployeeContext";
 import { Navbar } from "../../components/Navbar";
 import { toast } from "sonner";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 // Schéma de validation
 const employeeSchema = z.object({
@@ -38,6 +40,7 @@ const employeeSchema = z.object({
   salary: z.coerce.number().positive("Le salaire doit être positif"),
   hireDate: z.string().min(1, "La date d'embauche est requise"),
   status: z.enum(["active", "inactive"]),
+  avatar: z.string().optional(),
 });
 
 type EmployeeFormValues = z.infer<typeof employeeSchema>;
@@ -45,8 +48,11 @@ type EmployeeFormValues = z.infer<typeof employeeSchema>;
 const EmployeeForm = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { addEmployee, updateEmployee, getEmployee } = useEmployees();
+  const { addEmployee, updateEmployee, getEmployee, uploadAvatar } = useEmployees();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   
   const isEditMode = !!id;
   
@@ -63,6 +69,7 @@ const EmployeeForm = () => {
       salary: 0,
       hireDate: new Date().toISOString().split("T")[0],
       status: "active",
+      avatar: "",
     },
   });
   
@@ -81,7 +88,12 @@ const EmployeeForm = () => {
           salary: employee.salary,
           hireDate: employee.hireDate,
           status: employee.status,
+          avatar: employee.avatar,
         });
+        
+        if (employee.avatar && employee.avatar !== "/placeholder.svg") {
+          setPreviewUrl(employee.avatar);
+        }
       } else {
         toast.error("Employé non trouvé");
         navigate("/employees");
@@ -89,12 +101,42 @@ const EmployeeForm = () => {
     }
   }, [isEditMode, id, getEmployee, form, navigate]);
   
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    
+    // Vérifier la taille du fichier (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("La taille du fichier doit être inférieure à 5MB");
+      return;
+    }
+    
+    // Vérifier le type du fichier
+    if (!['image/jpeg', 'image/png', 'image/gif', 'image/webp'].includes(file.type)) {
+      toast.error("Seules les images JPEG, PNG, GIF et WEBP sont acceptées");
+      return;
+    }
+    
+    setSelectedFile(file);
+    
+    // Créer une URL d'aperçu
+    const objectUrl = URL.createObjectURL(file);
+    setPreviewUrl(objectUrl);
+  };
+  
+  const removeImage = () => {
+    setPreviewUrl(null);
+    setSelectedFile(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+  
   const onSubmit = async (data: EmployeeFormValues) => {
     try {
       setIsSubmitting(true);
       
-      // Nous nous assurons que toutes les propriétés sont présentes
-      // En créant un nouvel objet qui respecte le type Omit<Employee, "id">
+      // Créer un objet employee avec toutes les propriétés requises
       const employeeData: Omit<Employee, "id"> = {
         firstName: data.firstName,
         lastName: data.lastName,
@@ -104,18 +146,34 @@ const EmployeeForm = () => {
         department: data.department,
         salary: data.salary,
         hireDate: data.hireDate,
-        status: data.status
+        status: data.status,
+        avatar: data.avatar || "/placeholder.svg"
       };
       
       if (isEditMode && id) {
-        updateEmployee(id, data);
+        // Si une nouvelle image a été sélectionnée, la télécharger d'abord
+        if (selectedFile) {
+          await uploadAvatar(id, selectedFile);
+        } else {
+          updateEmployee(id, data);
+        }
         toast.success("Employé mis à jour avec succès");
+        navigate(`/employees/${id}`);
       } else {
+        // Pour un nouvel employé
+        const newEmployeeId = Date.now().toString();
+        
+        // Ajouter l'employé
         addEmployee(employeeData);
+        
+        // Si une image a été sélectionnée, la télécharger
+        if (selectedFile) {
+          await uploadAvatar(newEmployeeId, selectedFile);
+        }
+        
         toast.success("Employé ajouté avec succès");
+        navigate("/employees");
       }
-      
-      navigate("/employees");
     } catch (error) {
       console.error("Erreur lors de la soumission:", error);
       toast.error("Une erreur est survenue");
@@ -150,6 +208,43 @@ const EmployeeForm = () => {
               <div className="space-y-4">
                 <h2 className="text-xl font-semibold">Informations personnelles</h2>
                 <Separator />
+                
+                <div className="flex justify-center mb-6">
+                  <div className="relative group">
+                    <Avatar className="h-24 w-24 cursor-pointer border-2 border-primary/20">
+                      {previewUrl ? (
+                        <AvatarImage src={previewUrl} alt="Avatar" />
+                      ) : (
+                        <AvatarFallback className="bg-primary/10 text-primary text-2xl font-medium">
+                          {form.watch("firstName")?.[0] || "N"}{form.watch("lastName")?.[0] || "N"}
+                        </AvatarFallback>
+                      )}
+                    </Avatar>
+                    
+                    <div className="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+                      onClick={() => fileInputRef.current?.click()}>
+                      <Camera className="h-6 w-6 text-white" />
+                    </div>
+                    
+                    {previewUrl && (
+                      <button 
+                        type="button"
+                        className="absolute -top-2 -right-2 bg-red-500 rounded-full text-white p-1 hover:bg-red-600 transition-colors"
+                        onClick={removeImage}
+                      >
+                        <XCircle className="h-4 w-4" />
+                      </button>
+                    )}
+                    
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      className="hidden"
+                      accept="image/*"
+                      onChange={handleFileChange}
+                    />
+                  </div>
+                </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <FormField
@@ -321,9 +416,22 @@ const EmployeeForm = () => {
                 >
                   Annuler
                 </Button>
-                <Button type="submit" disabled={isSubmitting}>
-                  <Save className="mr-2 h-4 w-4" />
-                  {isSubmitting ? "Enregistrement..." : "Enregistrer"}
+                <Button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="bg-green-600 hover:bg-green-700 transition-colors animate-in"
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center">
+                      <span className="animate-spin h-4 w-4 mr-2 border-2 border-white border-t-transparent rounded-full"></span>
+                      {isEditMode ? "Mise à jour..." : "Création..."}
+                    </span>
+                  ) : (
+                    <span className="flex items-center">
+                      <Save className="mr-2 h-4 w-4" />
+                      Enregistrer
+                    </span>
+                  )}
                 </Button>
               </div>
             </form>

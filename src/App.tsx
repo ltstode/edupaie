@@ -16,6 +16,10 @@ import NotFound from "./pages/NotFound";
 import EmployeesList from "./pages/employees/EmployeesList";
 import EmployeeDetails from "./pages/employees/EmployeeDetails";
 import EmployeeForm from "./pages/employees/EmployeeForm";
+import EmployeeContract from "./pages/employees/EmployeeContract";
+import EmployeeCertificate from "./pages/employees/EmployeeCertificate";
+import PayrollPage from "./pages/payroll/PayrollPage";
+import PayrollDetail from "./pages/payroll/PayrollDetail";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +62,28 @@ const App = () => (
               <Route path="/employees/edit/:id" element={
                 <ProtectedRoute>
                   <EmployeeForm />
+                </ProtectedRoute>
+              } />
+              <Route path="/employees/:id/contract" element={
+                <ProtectedRoute>
+                  <EmployeeContract />
+                </ProtectedRoute>
+              } />
+              <Route path="/employees/:id/certificate" element={
+                <ProtectedRoute>
+                  <EmployeeCertificate />
+                </ProtectedRoute>
+              } />
+              
+              {/* Routes de gestion des fiches de paie */}
+              <Route path="/payroll" element={
+                <ProtectedRoute>
+                  <PayrollPage />
+                </ProtectedRoute>
+              } />
+              <Route path="/payroll/:id" element={
+                <ProtectedRoute>
+                  <PayrollDetail />
                 </ProtectedRoute>
               } />
               
