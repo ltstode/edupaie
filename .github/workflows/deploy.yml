@@ -7,29 +7,27 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          
-      - run: |
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
           npm install
           npm run build
-          
+
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.1
         with:
           server: ftp.tanmiton.com
           username: "tanmi2503002"
           password: "${{ secrets.FTP_PWD }}"
-          local-dir: ./dist/
-          server-dir: "edupaie.tanmiton.com/"  # Slash final obligatoire
           protocol: ftp
+          local-dir: ./dist/
+          server-dir: "edupaie.tanmiton.com/"  # Notez le / final obligatoire
           dangerous-clean-slate: false
           exclude: |
             .git/
             .github/
             *.md
             node_modules/
+          log-level: verbose
