@@ -47,7 +47,7 @@ export function StatsCard({
           <p className="text-xs text-muted-foreground flex items-center gap-1">
             {description}
             {trend && (
-              <span className={`inline-flex items-center ${trend.positive ? 'text-success' : 'text-destructive'}`}>
+              <span className={`inline-flex items-center ${trend.positive ? 'text-green-500' : 'text-destructive'}`}>
                 {trend.positive ? '↑' : '↓'} {trend.value}
               </span>
             )}
