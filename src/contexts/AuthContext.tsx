@@ -2,14 +2,7 @@
 import React, { createContext, useState, useContext, useEffect, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-  schoolName: string;
-}
+import { User } from "../types/user";
 
 interface AuthContextType {
   user: User | null;
@@ -58,8 +51,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           id: "1",
           name: "Administrateur Démo",
           email: "demo@edupaie.com",
-          role: "admin",
-          schoolName: "École Elite"
+          schoolName: "École Elite",
+          avatar: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=300&q=80",
+          userStats: {
+            employees: 3,
+            reports: 12,
+            payments: 247
+          }
         };
         
         localStorage.setItem("edupaie_user", JSON.stringify(userData));
@@ -87,8 +85,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         id: "2",
         name,
         email,
-        role: "admin",
-        schoolName
+        schoolName,
+        avatar: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=300&q=80",
+        userStats: {
+          employees: 0,
+          reports: 0,
+          payments: 0
+        }
       };
       
       localStorage.setItem("edupaie_user", JSON.stringify(userData));
