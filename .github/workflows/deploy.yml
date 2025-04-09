@@ -1,0 +1,36 @@
+name: Deploy EduPaie
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          
+      - run: |
+          npm install
+          npm run build
+          
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.1
+        with:
+          server: ftp.tanmiton.com
+          username: "tanmi2503002"  # Identifiant direct
+          password: ${{ secrets.FTP_PWD }}  
+          local-dir: ./dist/
+          server-dir: "edupaie.tanmiton.com"  # Sans slash initial
+          protocol: ftp
+          server-root: "/"  # Racine FTP
+          dangerous-clean-slate: false
+          exclude: |
+            .git/
+            .github/
+            *.md
+            node_modules/
