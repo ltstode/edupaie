@@ -47,7 +47,7 @@ const ProfileSettings = () => {
   const [schoolInfo, setSchoolInfo] = useState({
     name: user?.schoolName || '',
     type: 'École secondaire',
-    address: '456 Avenue de l'Education, Dakar, Sénégal',
+    address: '456 Avenue de l\'Education, Dakar, Sénégal',
     email: `contact@${user?.schoolName?.toLowerCase().replace(/\s+/g, '') || 'ecole'}.edu.sn`,
     phone: '+221 33 123 45 67'
   });
