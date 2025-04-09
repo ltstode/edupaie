@@ -148,10 +148,10 @@ export function PreferencesSettings() {
           {colors.map((colorOption) => (
             <div 
               key={colorOption.color}
-              className={`w-8 h-8 rounded-full cursor-pointer hover:ring-2 ring-offset-2 transition-all ${
-                preferences.accentColor === colorOption.color ? 'ring-2' : ''
+              className={`w-8 h-8 rounded-full cursor-pointer hover:ring-2 hover:ring-offset-2 transition-all ${
+                preferences.accentColor === colorOption.color ? 'ring-2 ring-offset-2' : ''
               }`}
-              style={{ backgroundColor: colorOption.color, ringColor: colorOption.color }}
+              style={{ backgroundColor: colorOption.color }}
               onClick={() => handlePreferenceChange('accentColor', colorOption.color)}
               title={colorOption.name}
             />
