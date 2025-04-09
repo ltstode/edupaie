@@ -9,6 +9,8 @@ import { EmployeeProvider } from "./contexts/EmployeeContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { DirectorProvider } from "./contexts/DirectorContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { Navbar } from "./components/Navbar";
+import { Footer } from "./components/Footer";
 
 import Index from "./pages/Index";
 import Login from "./pages/Login";
@@ -31,6 +33,15 @@ import ProfileSettings from "./pages/profile/ProfileSettings";
 
 const queryClient = new QueryClient();
 
+// Custom layout component for public pages
+const PublicLayout = ({ children }: { children: React.ReactNode }) => (
+  <>
+    <Navbar />
+    {children}
+    <Footer />
+  </>
+);
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
@@ -42,11 +53,12 @@ const App = () => (
                 <Toaster />
                 <Sonner />
                 <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
+                  {/* Public routes with Navbar and Footer */}
+                  <Route path="/" element={<PublicLayout><Index /></PublicLayout>} />
+                  <Route path="/login" element={<PublicLayout><Login /></PublicLayout>} />
+                  <Route path="/register" element={<PublicLayout><Register /></PublicLayout>} />
                   
-                  {/* Routes protégées */}
+                  {/* Protected routes with sidebar */}
                   <Route path="/dashboard" element={
                     <ProtectedRoute>
                       <Dashboard />
