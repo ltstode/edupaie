@@ -22,12 +22,11 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.1
         with:
           server: ftp.tanmiton.com
-          username: "tanmi2503002"  # Identifiant direct
-          password: ${{ secrets.FTP_PWD }}  
+          username: "tanmi2503002"
+          password: "${{ secrets.FTP_PWD }}"
           local-dir: ./dist/
-          server-dir: "edupaie.tanmiton.com"  # Sans slash initial
+          server-dir: "edupaie.tanmiton.com/"  # Slash final obligatoire
           protocol: ftp
-          server-root: "/"  # Racine FTP
           dangerous-clean-slate: false
           exclude: |
             .git/
