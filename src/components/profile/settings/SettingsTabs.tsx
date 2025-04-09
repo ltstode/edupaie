@@ -10,6 +10,7 @@ import { PersonalInfoForm } from './PersonalInfoForm';
 import { SchoolInfoForm } from './SchoolInfoForm';
 import { SecuritySettings } from './SecuritySettings';
 import { PreferencesSettings } from './PreferencesSettings';
+import { DirectorEditor } from '@/components/director/DirectorEditor';
 import { User } from '@/types/user';
 
 interface SettingsTabsProps {
@@ -22,6 +23,7 @@ export function SettingsTabs({ user }: SettingsTabsProps) {
       <TabsList className="mb-6">
         <TabsTrigger value="personal">Personnel</TabsTrigger>
         <TabsTrigger value="school">École</TabsTrigger>
+        <TabsTrigger value="director">Directeur</TabsTrigger>
         <TabsTrigger value="security">Sécurité</TabsTrigger>
         <TabsTrigger value="preferences">Préférences</TabsTrigger>
       </TabsList>
@@ -32,6 +34,10 @@ export function SettingsTabs({ user }: SettingsTabsProps) {
       
       <TabsContent value="school">
         <SchoolInfoForm user={user} />
+      </TabsContent>
+      
+      <TabsContent value="director">
+        <DirectorEditor />
       </TabsContent>
       
       <TabsContent value="security">

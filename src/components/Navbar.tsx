@@ -17,6 +17,7 @@ import {
 
 export function Navbar() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { isAuthenticated, user, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
@@ -78,7 +79,12 @@ export function Navbar() {
                 <Bell className="h-5 w-5" />
                 <span className="sr-only">Notifications</span>
               </Button>
-              <Button variant="ghost" size="icon" className="rounded-full">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="rounded-full"
+                onClick={() => navigate('/profile/settings')}
+              >
                 <Settings className="h-5 w-5" />
                 <span className="sr-only">Paramètres</span>
               </Button>
@@ -106,7 +112,7 @@ export function Navbar() {
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link to="/settings">
+                    <Link to="/profile/settings">
                       <Settings className="mr-2 h-4 w-4" />
                       <span>Paramètres</span>
                     </Link>
