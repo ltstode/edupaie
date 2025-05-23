@@ -1,276 +1,259 @@
 
-import { CreditCard, Download, Users, BookOpen, TrendingUp, DollarSign, Calendar, FileText, Rocket } from "lucide-react";
+import { useAuth } from "../contexts/AuthContext";
+import { Sidebar } from "../components/Sidebar";
+import { StatsCard } from "../components/StatsCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { 
+  Users, DollarSign, TrendingUp, Calendar,
+  Plus, FileText, BarChart3, Clock,
+  ArrowRight, Star, Activity
+} from "lucide-react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
-import { useEmployees } from "../contexts/EmployeeContext";
-import { Sidebar } from "@/components/Sidebar";
-import { cn } from "@/lib/utils";
 
 const Dashboard = () => {
   const { user } = useAuth();
-  const { employees } = useEmployees();
   
-  // Calculer le total des salaires
-  const totalSalaries = employees.reduce((sum, employee) => sum + employee.salary, 0);
-  
-  // Formatage des montants
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('fr-FR', {
-      style: 'currency',
-      currency: 'XOF',
-      maximumFractionDigits: 0
-    }).format(amount);
+  const currentHour = new Date().getHours();
+  const getGreeting = () => {
+    if (currentHour < 12) return "Bonjour";
+    if (currentHour < 18) return "Bon après-midi";
+    return "Bonsoir";
   };
-  
+
+  const stats = [
+    {
+      title: "Total Employés",
+      value: "45",
+      change: "+2 ce mois",
+      icon: Users,
+      color: "blue"
+    },
+    {
+      title: "Salaires du mois",
+      value: "2,450,000 FCFA",
+      change: "+12% vs mois dernier",
+      icon: DollarSign,
+      color: "green"
+    },
+    {
+      title: "Paiements en attente",
+      value: "8",
+      change: "À traiter aujourd'hui",
+      icon: Clock,
+      color: "orange"
+    },
+    {
+      title: "Taux de satisfaction",
+      value: "98%",
+      change: "+5% ce trimestre",
+      icon: Star,
+      color: "purple"
+    }
+  ];
+
+  const quickActions = [
+    {
+      title: "Nouveau employé",
+      description: "Ajouter un nouvel employé à votre système",
+      icon: Users,
+      href: "/employees/new",
+      color: "bg-blue-500"
+    },
+    {
+      title: "Générer la paie",
+      description: "Créer les bulletins de paie du mois",
+      icon: FileText,
+      href: "/payroll",
+      color: "bg-green-500"
+    },
+    {
+      title: "Voir les rapports",
+      description: "Consulter les rapports financiers",
+      icon: BarChart3,
+      href: "/reports",
+      color: "bg-purple-500"
+    }
+  ];
+
+  const recentActivities = [
+    {
+      title: "Bulletin de paie généré",
+      description: "Marie Diallo - Janvier 2024",
+      time: "Il y a 2 heures",
+      type: "payroll"
+    },
+    {
+      title: "Nouvel employé ajouté",
+      description: "Ahmed Sow - Professeur de Mathématiques",
+      time: "Il y a 5 heures",
+      type: "employee"
+    },
+    {
+      title: "Rapport mensuel généré",
+      description: "Rapport financier - Décembre 2023",
+      time: "Hier",
+      type: "report"
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 flex">
       <Sidebar />
       
-      <div className="ml-60">
-        <header className="sticky top-0 z-20 w-full bg-background/80 backdrop-blur-md border-b">
-          <div className="h-16 flex items-center justify-between px-6">
-            <h1 className="text-lg font-medium">Aperçu</h1>
-            <div className="flex items-center space-x-4">
-              <div className="relative w-full max-w-sm">
-                <input 
-                  type="text" 
-                  placeholder="Rechercher..." 
-                  className="w-full rounded-full bg-muted px-4 py-2 text-sm"
-                />
-              </div>
-              <Button variant="outline" className="rounded-full">
-                <Download className="h-4 w-4 mr-2" />
-                Exporter
+      <main className="flex-1 ml-72 p-8">
+        <div className="max-w-7xl mx-auto space-y-8">
+          {/* Header avec salutation */}
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+                {getGreeting()}, {user?.name || "Administrateur"} 👋
+              </h1>
+              <p className="text-muted-foreground mt-1">
+                Voici un aperçu de votre école aujourd'hui
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <Button variant="outline" size="sm">
+                <Calendar className="h-4 w-4 mr-2" />
+                {new Date().toLocaleDateString('fr-FR', { 
+                  weekday: 'long', 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                })}
               </Button>
             </div>
           </div>
-        </header>
-        
-        <main className="p-6">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold tracking-tight mb-2">
-              Bonjour {user?.name} ! <span className="text-yellow-400">☀️</span>
-            </h2>
-            <p className="text-muted-foreground">
-              Bienvenue dans votre tableau de bord
-            </p>
+
+          {/* Statistiques */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {stats.map((stat, index) => (
+              <StatsCard
+                key={index}
+                title={stat.title}
+                value={stat.value}
+                change={stat.change}
+                icon={stat.icon}
+                trend="up"
+              />
+            ))}
           </div>
-          
-          <div className="flex items-center justify-center mb-8">
-            <div className="max-w-lg">
-              <div className="bg-muted/50 rounded-xl p-8 relative flex items-center space-x-4">
-                <div className="border-4 border-background p-4 rounded-xl bg-background">
-                  <Rocket className="w-12 h-12 text-yellow-400" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-medium mb-1">Un nouveau départ avec des possibilités infinies</h3>
-                  <p className="text-muted-foreground mb-4">Quelle sera votre première action ?</p>
-                  <Button asChild>
-                    <Link to="/employees/new">
-                      Ajouter un employé
-                      <span className="ml-2">🚀</span>
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-6">
-            <Card className={cn("glass-card transition-all hover:shadow-md")}>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Total des salaires</CardTitle>
-                <DollarSign className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{formatCurrency(totalSalaries)}</div>
-                <p className="text-xs text-muted-foreground">
-                  {employees.length} employés actifs
-                </p>
-              </CardContent>
-            </Card>
-            <Card className={cn("glass-card transition-all hover:shadow-md")}>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Frais de scolarité</CardTitle>
-                <BookOpen className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">12,750,000 FCFA</div>
-                <p className="text-xs text-muted-foreground">
-                  +10.5% par rapport au trimestre dernier
-                </p>
-              </CardContent>
-            </Card>
-            <Link to="/employees" className="block">
-              <Card className={cn("glass-card h-full hover:bg-accent/20 transition-all hover:shadow-md")}>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">Personnel</CardTitle>
-                  <Users className="h-4 w-4 text-muted-foreground" />
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Actions rapides */}
+            <div className="lg:col-span-2">
+              <Card className="border-0 shadow-lg bg-gradient-to-br from-card to-muted/20">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Activity className="h-5 w-5" />
+                    Actions rapides
+                  </CardTitle>
+                  <CardDescription>
+                    Accédez rapidement aux fonctionnalités principales
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{employees.length}</div>
-                  <p className="text-xs text-muted-foreground">
-                    Gérer les employés
-                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {quickActions.map((action, index) => (
+                      <Link key={index} to={action.href}>
+                        <Card className="group hover:shadow-md transition-all duration-200 hover:scale-105 cursor-pointer border-0 bg-gradient-to-br from-background to-muted/30">
+                          <CardContent className="p-6">
+                            <div className={`w-12 h-12 ${action.color} rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform`}>
+                              <action.icon className="h-6 w-6" />
+                            </div>
+                            <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">
+                              {action.title}
+                            </h3>
+                            <p className="text-sm text-muted-foreground mb-3">
+                              {action.description}
+                            </p>
+                            <div className="flex items-center text-primary text-sm font-medium">
+                              Commencer
+                              <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </Link>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
-            </Link>
-            <Card className={cn("glass-card transition-all hover:shadow-md")}>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Taux de paiement</CardTitle>
-                <TrendingUp className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">87%</div>
-                <p className="text-xs text-muted-foreground">
-                  +5.1% par rapport au mois dernier
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-          
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7 mt-6">
-            <Tabs defaultValue="apercu" className="col-span-full lg:col-span-4">
-              <div className="flex justify-between items-center">
-                <TabsList>
-                  <TabsTrigger value="apercu">Aperçu</TabsTrigger>
-                  <TabsTrigger value="paiements">Paiements</TabsTrigger>
-                  <TabsTrigger value="depenses">Dépenses</TabsTrigger>
-                </TabsList>
-                <select className="bg-background border rounded px-2 py-1 text-sm">
-                  <option>Ce mois-ci</option>
-                  <option>Ce trimestre</option>
-                  <option>Cette année</option>
-                </select>
-              </div>
-              <TabsContent value="apercu" className="p-0 mt-4">
-                <Card className="glass-card">
-                  <CardHeader>
-                    <CardTitle>Tendance des revenus</CardTitle>
-                    <CardDescription>
-                      Évolution des revenus des frais de scolarité et autres sources
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="h-[300px] flex items-center justify-center border-2 border-dashed rounded-md">
-                      <p className="text-muted-foreground">Graphique de tendance des revenus</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-              <TabsContent value="paiements" className="p-0 mt-4">
-                <Card className="glass-card">
-                  <CardHeader>
-                    <CardTitle>Paiements récents</CardTitle>
-                    <CardDescription>
-                      Les derniers paiements reçus
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="h-[300px] flex items-center justify-center border-2 border-dashed rounded-md">
-                      <p className="text-muted-foreground">Liste des paiements récents</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-              <TabsContent value="depenses" className="p-0 mt-4">
-                <Card className="glass-card">
-                  <CardHeader>
-                    <CardTitle>Principales dépenses</CardTitle>
-                    <CardDescription>
-                      Répartition des dépenses par catégorie
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="h-[300px] flex items-center justify-center border-2 border-dashed rounded-md">
-                      <p className="text-muted-foreground">Graphique des dépenses</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            </Tabs>
-            
-            <div className="col-span-full lg:col-span-3 space-y-4">
-              <Card className="glass-card">
+            </div>
+
+            {/* Activités récentes */}
+            <div>
+              <Card className="border-0 shadow-lg bg-gradient-to-br from-card to-muted/20">
                 <CardHeader>
-                  <CardTitle>Paiements à venir</CardTitle>
+                  <CardTitle className="flex items-center gap-2">
+                    <Clock className="h-5 w-5" />
+                    Activités récentes
+                  </CardTitle>
                   <CardDescription>
-                    Échéances prévues pour les prochains jours
+                    Dernières actions effectuées
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-4">
-                        <div className="rounded-full bg-primary/10 p-2">
-                          <Calendar className="h-5 w-5 text-primary" />
+                    {recentActivities.map((activity, index) => (
+                      <div key={index} className="flex items-start gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted/70 transition-colors">
+                        <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                          {activity.type === 'payroll' && <FileText className="h-4 w-4 text-primary" />}
+                          {activity.type === 'employee' && <Users className="h-4 w-4 text-primary" />}
+                          {activity.type === 'report' && <BarChart3 className="h-4 w-4 text-primary" />}
                         </div>
-                        <div>
-                          <p className="font-medium">Salaires du personnel</p>
-                          <p className="text-sm text-muted-foreground">28 Avril 2025</p>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <p className="font-medium">{formatCurrency(totalSalaries)}</p>
-                        <p className="text-xs text-muted-foreground">{employees.length} employés</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-4">
-                        <div className="rounded-full bg-primary/10 p-2">
-                          <CreditCard className="h-5 w-5 text-primary" />
-                        </div>
-                        <div>
-                          <p className="font-medium">Facture Fournitures</p>
-                          <p className="text-sm text-muted-foreground">15 Avril 2025</p>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-sm font-medium">{activity.title}</h4>
+                          <p className="text-xs text-muted-foreground mt-1">{activity.description}</p>
+                          <p className="text-xs text-muted-foreground mt-1">{activity.time}</p>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <p className="font-medium">850,000 FCFA</p>
-                        <p className="text-xs text-muted-foreground">Librairie Centrale</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-4">
-                        <div className="rounded-full bg-primary/10 p-2">
-                          <FileText className="h-5 w-5 text-primary" />
-                        </div>
-                        <div>
-                          <p className="font-medium">Taxes trimestrielles</p>
-                          <p className="text-sm text-muted-foreground">30 Avril 2025</p>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <p className="font-medium">1,230,000 FCFA</p>
-                        <p className="text-xs text-muted-foreground">CNSS et autres</p>
-                      </div>
-                    </div>
+                    ))}
                   </div>
-                </CardContent>
-              </Card>
-              
-              <Card className="glass-card">
-                <CardHeader>
-                  <CardTitle>Frais non payés</CardTitle>
-                  <CardDescription>
-                    Élèves avec des frais de scolarité en retard
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="h-[150px] flex items-center justify-center border-2 border-dashed rounded-md">
-                    <p className="text-muted-foreground">Liste des frais en retard</p>
-                  </div>
+                  
+                  <Button variant="ghost" className="w-full mt-4 text-primary hover:bg-primary/10">
+                    Voir toutes les activités
+                    <ArrowRight className="h-4 w-4 ml-2" />
+                  </Button>
                 </CardContent>
               </Card>
             </div>
           </div>
-        </main>
-      </div>
+
+          {/* Graphiques et aperçus */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-card to-muted/20">
+              <CardHeader>
+                <CardTitle>Évolution des salaires</CardTitle>
+                <CardDescription>Comparaison sur les 6 derniers mois</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="h-64 flex items-center justify-center text-muted-foreground">
+                  <div className="text-center">
+                    <TrendingUp className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                    <p>Graphique à venir</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg bg-gradient-to-br from-card to-muted/20">
+              <CardHeader>
+                <CardTitle>Répartition des employés</CardTitle>
+                <CardDescription>Par département</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="h-64 flex items-center justify-center text-muted-foreground">
+                  <div className="text-center">
+                    <Users className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                    <p>Graphique à venir</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </main>
     </div>
   );
 };

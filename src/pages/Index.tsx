@@ -2,23 +2,13 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { 
-  Check, 
-  ArrowRight, 
-  ChevronRight, 
-  Users, 
-  Calculator, 
-  PieChart, 
-  Calendar, 
-  FileText, 
-  CreditCard, 
-  Shield, 
-  Globe, 
-  ArrowUpRight,
-  FileSpreadsheet,
-  Building,
-  Download
+  Check, ArrowRight, Star, Users, Calculator, 
+  PieChart, Calendar, FileText, CreditCard, Shield, 
+  Globe, Building, Download, Smartphone, Award,
+  TrendingUp, Zap, Target, CheckCircle
 } from "lucide-react";
 
 const Index = () => {
@@ -26,43 +16,62 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-1">
-        {/* Section Hero */}
-        <section className="relative py-24 md:py-32 overflow-hidden bg-gradient-to-br from-blue-600 to-blue-700 text-white">
-          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
-          <div className="container px-4 md:px-6 max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div className="flex flex-col space-y-6 animate-fade-in">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                  Gestion de paie simplifiée pour écoles
-                </h1>
-                <p className="text-lg md:text-xl opacity-90 max-w-md">
-                  Automatisez vos processus de paie, gérez vos employés et générez des rapports détaillés en quelques clics.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button size="lg" asChild className="h-12 px-6 rounded-full bg-white text-blue-700 hover:bg-blue-50">
-                    <Link to="/register">
-                      Essayer Gratuitement
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                  <Button size="lg" variant="outline" asChild className="h-12 px-6 rounded-full border-white text-white hover:bg-white/10">
-                    <Link to="/login">
-                      Connexion
-                    </Link>
-                  </Button>
+        {/* Hero Section Moderne */}
+        <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-blue-900">
+          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-30"></div>
+          <div className="container relative px-4 py-24 md:py-32 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-8 animate-fade-in">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
+                  <Star className="h-4 w-4" />
+                  Plateforme #1 en Afrique de l'Ouest
                 </div>
-                <div className="text-sm opacity-80">
-                  Intégration complète avec les services de paiement mobile en Afrique
+                
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                  <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
+                    Révolutionnez
+                  </span>
+                  <br />
+                  la gestion de votre école
+                </h1>
+                
+                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-xl">
+                  EduPaie automatise complètement la gestion des salaires, des employés et des finances de votre établissement scolaire.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link to="/register">
+                    <Button size="lg" className="h-14 px-8 text-lg rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-xl">
+                      Essayer gratuitement
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </Link>
+                  <Link to="/login">
+                    <Button size="lg" variant="outline" className="h-14 px-8 text-lg rounded-xl border-2">
+                      Démo en direct
+                    </Button>
+                  </Link>
+                </div>
+                
+                <div className="flex items-center gap-8 pt-4">
+                  <div className="flex items-center gap-2">
+                    <div className="flex -space-x-2">
+                      {[1, 2, 3, 4].map(i => (
+                        <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 border-2 border-white" />
+                      ))}
+                    </div>
+                    <span className="text-sm text-muted-foreground ml-2">1000+ écoles nous font confiance</span>
+                  </div>
                 </div>
               </div>
               
-              <div className="relative animate-fade-in" style={{ animationDelay: "200ms" }}>
-                <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-blue-700 rounded-2xl transform rotate-3 scale-105 opacity-30 blur-xl"></div>
-                <div className="relative bg-white dark:bg-gray-800 p-2 rounded-2xl shadow-2xl">
+              <div className="relative animate-fade-in" style={{ animationDelay: "300ms" }}>
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-400/20 to-purple-400/20 rounded-3xl transform rotate-3 scale-105 blur-xl"></div>
+                <div className="relative bg-white dark:bg-gray-800 p-3 rounded-3xl shadow-2xl">
                   <img 
                     src="/lovable-uploads/41066815-b5eb-435c-b51c-b675407c2194.png" 
-                    alt="Interface EduPaie - Tableau de bord" 
-                    className="rounded-xl w-full"
+                    alt="Interface EduPaie - Tableau de bord moderne" 
+                    className="rounded-2xl w-full shadow-lg"
                   />
                 </div>
               </div>
@@ -70,146 +79,158 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Section Fonctionnalités Clés avec captures d'écran */}
-        <section className="py-20 overflow-hidden">
-          <div className="container px-4 md:px-6 max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Fonctionnalités clés
+        {/* Section Fonctionnalités avec Images */}
+        <section className="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+          <div className="container px-4 max-w-7xl mx-auto">
+            <div className="text-center mb-20">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium mb-6">
+                <Zap className="h-4 w-4" />
+                Fonctionnalités Premium
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                Tout ce dont votre école a besoin
               </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Des outils puissants conçus spécifiquement pour les besoins des écoles africaines
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Une suite complète d'outils conçus spécifiquement pour les établissements scolaires africains
               </p>
             </div>
             
-            {/* Fonctionnalité 1: Gestion des employés */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+            {/* Gestion des employés */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
               <div className="order-2 lg:order-1">
-                <div className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full px-4 py-1 text-sm font-medium mb-4">
-                  Gestion des employés
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full text-sm font-medium mb-6">
+                  <Users className="h-4 w-4" />
+                  Gestion RH
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold mb-4">Gérez facilement tout votre personnel</h3>
-                <p className="text-lg text-muted-foreground mb-6">
-                  Centralisez les informations de vos enseignants et du personnel administratif en un seul endroit sécurisé.
+                <h3 className="text-3xl md:text-4xl font-bold mb-6">Gérez facilement tous vos employés</h3>
+                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  Centralisez toutes les informations de votre personnel enseignant et administratif. 
+                  Suivez les contrats, les présences et générez automatiquement tous les documents nécessaires.
                 </p>
-                <ul className="space-y-3 mb-6">
-                  <FeatureListItem text="Dossiers complets pour chaque employé" />
-                  <FeatureListItem text="Suivi des contrats et renouvellements" />
-                  <FeatureListItem text="Historique des salaires et ajustements" />
-                  <FeatureListItem text="Génération automatique d'attestations" />
-                </ul>
-                <Link to="/register" className="text-blue-600 dark:text-blue-400 font-medium flex items-center hover:underline">
-                  Découvrir cette fonctionnalité
-                  <ArrowUpRight className="ml-1 h-4 w-4" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                  <FeatureItem text="Dossiers complets pour chaque employé" />
+                  <FeatureItem text="Suivi des contrats et renouvellements" />
+                  <FeatureItem text="Gestion des présences et absences" />
+                  <FeatureItem text="Génération d'attestations automatique" />
+                </div>
+                <Link to="/register" className="inline-flex items-center text-green-600 dark:text-green-400 font-semibold hover:underline">
+                  Explorer cette fonctionnalité
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </div>
               <div className="order-1 lg:order-2 relative">
-                <div className="absolute inset-0 bg-gradient-to-tr from-blue-100 to-blue-50 dark:from-blue-900/20 dark:to-blue-800/10 rounded-2xl transform rotate-2 scale-105 opacity-70"></div>
-                <div className="relative shadow-xl rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800">
+                <div className="absolute inset-0 bg-gradient-to-tr from-green-200/50 to-blue-200/50 dark:from-green-900/20 dark:to-blue-900/20 rounded-3xl transform rotate-2 scale-105"></div>
+                <div className="relative overflow-hidden rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700">
                   <img 
                     src="/lovable-uploads/6b7da374-5148-4293-b4de-6f69e9253afa.png" 
-                    alt="Gestion des employés" 
-                    className="w-full"
+                    alt="Gestion des employés - Interface moderne" 
+                    className="w-full hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               </div>
             </div>
             
-            {/* Fonctionnalité 2: Génération de bulletins de paie */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+            {/* Bulletins de paie */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-tr from-green-100 to-green-50 dark:from-green-900/20 dark:to-green-800/10 rounded-2xl transform -rotate-2 scale-105 opacity-70"></div>
-                <div className="relative shadow-xl rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800">
+                <div className="absolute inset-0 bg-gradient-to-tr from-purple-200/50 to-pink-200/50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-3xl transform -rotate-2 scale-105"></div>
+                <div className="relative overflow-hidden rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700">
                   <img 
                     src="/lovable-uploads/c0d6ba3a-0a1c-4cc4-983f-a4b8d6d3570e.png" 
-                    alt="Génération de bulletins de paie" 
-                    className="w-full"
+                    alt="Génération de bulletins de paie automatique" 
+                    className="w-full hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               </div>
               <div>
-                <div className="inline-block bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full px-4 py-1 text-sm font-medium mb-4">
-                  Bulletins de paie
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full text-sm font-medium mb-6">
+                  <Calculator className="h-4 w-4" />
+                  Automatisation
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold mb-4">Générez des bulletins de paie professionnels</h3>
-                <p className="text-lg text-muted-foreground mb-6">
-                  Créez et distribuez des bulletins de paie détaillés conformes aux réglementations locales.
+                <h3 className="text-3xl md:text-4xl font-bold mb-6">Bulletins de paie en un clic</h3>
+                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  Générez des bulletins de paie professionnels conformes aux réglementations locales. 
+                  Calculs automatiques, distribution par email et archivage sécurisé.
                 </p>
-                <ul className="space-y-3 mb-6">
-                  <FeatureListItem text="Calcul automatique des cotisations sociales" />
-                  <FeatureListItem text="Personnalisation avec le logo de votre école" />
-                  <FeatureListItem text="Distribution par email ou impression" />
-                  <FeatureListItem text="Archivage sécurisé et exportation PDF" />
-                </ul>
-                <Link to="/register" className="text-green-600 dark:text-green-400 font-medium flex items-center hover:underline">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                  <FeatureItem text="Calcul automatique des cotisations" />
+                  <FeatureItem text="Templates personnalisables" />
+                  <FeatureItem text="Distribution multi-canal" />
+                  <FeatureItem text="Conformité réglementaire" />
+                </div>
+                <Link to="/register" className="inline-flex items-center text-purple-600 dark:text-purple-400 font-semibold hover:underline">
                   Découvrir cette fonctionnalité
-                  <ArrowUpRight className="ml-1 h-4 w-4" />
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </div>
             </div>
             
-            {/* Fonctionnalité 3: Rapports et analyses */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+            {/* Rapports et analyses */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
               <div className="order-2 lg:order-1">
-                <div className="inline-block bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full px-4 py-1 text-sm font-medium mb-4">
-                  Rapports et analyses
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium mb-6">
+                  <TrendingUp className="h-4 w-4" />
+                  Analytics
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold mb-4">Suivez vos indicateurs financiers</h3>
-                <p className="text-lg text-muted-foreground mb-6">
-                  Gardez un œil sur tous les aspects financiers de votre établissement grâce à des rapports détaillés.
+                <h3 className="text-3xl md:text-4xl font-bold mb-6">Tableaux de bord intelligents</h3>
+                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  Visualisez toutes vos métriques importantes en temps réel. Prenez des décisions éclairées 
+                  grâce à des rapports détaillés et des prévisions automatiques.
                 </p>
-                <ul className="space-y-3 mb-6">
-                  <FeatureListItem text="Tableaux de bord interactifs en temps réel" />
-                  <FeatureListItem text="Rapports financiers personnalisables" />
-                  <FeatureListItem text="Suivi des tendances et prévisions" />
-                  <FeatureListItem text="Export vers Excel et PDF" />
-                </ul>
-                <Link to="/register" className="text-purple-600 dark:text-purple-400 font-medium flex items-center hover:underline">
-                  Découvrir cette fonctionnalité
-                  <ArrowUpRight className="ml-1 h-4 w-4" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                  <FeatureItem text="Tableaux de bord interactifs" />
+                  <FeatureItem text="Rapports personnalisables" />
+                  <FeatureItem text="Analyses prédictives" />
+                  <FeatureItem text="Exports multi-formats" />
+                </div>
+                <Link to="/register" className="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold hover:underline">
+                  Voir les analytics
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </div>
               <div className="order-1 lg:order-2 relative">
-                <div className="absolute inset-0 bg-gradient-to-tr from-purple-100 to-purple-50 dark:from-purple-900/20 dark:to-purple-800/10 rounded-2xl transform rotate-2 scale-105 opacity-70"></div>
-                <div className="relative shadow-xl rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800">
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-200/50 to-cyan-200/50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-3xl transform rotate-2 scale-105"></div>
+                <div className="relative overflow-hidden rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700">
                   <img 
                     src="/lovable-uploads/1ab43376-8625-4054-b3f5-52208a4f9be4.png" 
-                    alt="Rapports et analyses" 
-                    className="w-full"
+                    alt="Rapports et analytics avancés" 
+                    className="w-full hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               </div>
             </div>
             
-            {/* Fonctionnalité 4: Informations sur l'établissement */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Informations établissement */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-tr from-orange-100 to-orange-50 dark:from-orange-900/20 dark:to-orange-800/10 rounded-2xl transform -rotate-2 scale-105 opacity-70"></div>
-                <div className="relative shadow-xl rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800">
+                <div className="absolute inset-0 bg-gradient-to-tr from-orange-200/50 to-red-200/50 dark:from-orange-900/20 dark:to-red-900/20 rounded-3xl transform -rotate-2 scale-105"></div>
+                <div className="relative overflow-hidden rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700">
                   <img 
                     src="/lovable-uploads/66d35ec4-cf80-4afd-9950-59fd84e45aed.png" 
-                    alt="Informations sur l'établissement" 
-                    className="w-full"
+                    alt="Gestion des informations d'établissement" 
+                    className="w-full hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               </div>
               <div>
-                <div className="inline-block bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-full px-4 py-1 text-sm font-medium mb-4">
-                  Profil d'établissement
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-full text-sm font-medium mb-6">
+                  <Building className="h-4 w-4" />
+                  Configuration
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold mb-4">Gérez les informations de votre école</h3>
-                <p className="text-lg text-muted-foreground mb-6">
-                  Centralisez toutes les informations administratives de votre établissement scolaire.
+                <h3 className="text-3xl md:text-4xl font-bold mb-6">Profil complet de votre école</h3>
+                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  Configurez facilement toutes les informations de votre établissement. 
+                  Personnalisez vos documents officiels et gérez les accès utilisateurs.
                 </p>
-                <ul className="space-y-3 mb-6">
-                  <FeatureListItem text="Profil complet de l'école" />
-                  <FeatureListItem text="Coordonnées et identifiants légaux" />
-                  <FeatureListItem text="Personnalisation des documents officiels" />
-                  <FeatureListItem text="Gestion des autorisations utilisateurs" />
-                </ul>
-                <Link to="/register" className="text-orange-600 dark:text-orange-400 font-medium flex items-center hover:underline">
-                  Découvrir cette fonctionnalité
-                  <ArrowUpRight className="ml-1 h-4 w-4" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                  <FeatureItem text="Identité complète de l'école" />
+                  <FeatureItem text="Documents personnalisés" />
+                  <FeatureItem text="Gestion des permissions" />
+                  <FeatureItem text="Branding automatique" />
+                </div>
+                <Link to="/register" className="inline-flex items-center text-orange-600 dark:text-orange-400 font-semibold hover:underline">
+                  Configurer mon école
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </div>
             </div>
@@ -217,304 +238,121 @@ const Index = () => {
         </section>
         
         {/* Section Avantages */}
-        <section className="py-20 bg-gray-50 dark:bg-gray-900">
-          <div className="container px-4 md:px-6 max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Transformez la gestion de votre école
+        <section className="py-24 bg-white dark:bg-gray-900">
+          <div className="container px-4 max-w-7xl mx-auto">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                Pourquoi choisir EduPaie ?
               </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                EduPaie combine tous les outils dont vous avez besoin pour optimiser vos opérations administratives et vous concentrer sur l'éducation.
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Une solution complète pensée pour les défis spécifiques des écoles africaines
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <FeatureCard 
-                icon={<Users className="h-8 w-8 text-blue-600" />}
-                title="Gestion des employés"
-                description="Gérez facilement les profils, contrats et documents de vos enseignants et personnel administratif."
+              <AdvantageCard 
+                icon={<Smartphone className="h-8 w-8 text-blue-600" />}
+                title="Mobile First"
+                description="Interface optimisée pour mobile, fonctionne parfaitement même avec une connexion limitée."
               />
-              <FeatureCard 
-                icon={<Calculator className="h-8 w-8 text-blue-600" />}
-                title="Calcul de paie automatisé"
-                description="Calculez automatiquement les salaires, primes, déductions et générez les fiches de paie en un clic."
+              <AdvantageCard 
+                icon={<Globe className="h-8 w-8 text-green-600" />}
+                title="Multi-pays"
+                description="Adapté aux réglementations fiscales et sociales de tous les pays d'Afrique de l'Ouest."
               />
-              <FeatureCard 
-                icon={<CreditCard className="h-8 w-8 text-blue-600" />}
-                title="Paiements simplifiés"
-                description="Intégration avec les systèmes de paiement mobile populaires en Afrique pour des versements rapides."
+              <AdvantageCard 
+                icon={<CreditCard className="h-8 w-8 text-purple-600" />}
+                title="Paiements locaux"
+                description="Intégration native avec Orange Money, MTN, Wave et tous les services populaires."
               />
-              <FeatureCard 
-                icon={<PieChart className="h-8 w-8 text-blue-600" />}
-                title="Rapports détaillés"
-                description="Visualisez vos données financières avec des tableaux de bord interactifs et des rapports personnalisables."
+              <AdvantageCard 
+                icon={<Shield className="h-8 w-8 text-red-600" />}
+                title="Sécurité maximale"
+                description="Chiffrement bancaire, sauvegardes automatiques et conformité RGPD."
               />
-              <FeatureCard 
-                icon={<Calendar className="h-8 w-8 text-blue-600" />}
-                title="Suivi des présences"
-                description="Suivez les présences, absences et retards pour une gestion optimale des ressources humaines."
+              <AdvantageCard 
+                icon={<Award className="h-8 w-8 text-yellow-600" />}
+                title="Support expert"
+                description="Équipe dédiée qui comprend les enjeux de l'éducation en Afrique."
               />
-              <FeatureCard 
-                icon={<FileText className="h-8 w-8 text-blue-600" />}
-                title="Documents automatisés"
-                description="Générez automatiquement contrats, attestations et certificats avec les signatures numériques."
+              <AdvantageCard 
+                icon={<Target className="h-8 w-8 text-indigo-600" />}
+                title="ROI prouvé"
+                description="90% de réduction du temps de gestion administrative selon nos clients."
               />
-            </div>
-          </div>
-        </section>
-        
-        {/* Section Démo Interactive */}
-        <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950">
-          <div className="container px-4 md:px-6 max-w-6xl mx-auto">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Une interface simple et intuitive
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Découvrez à quel point EduPaie est facile à utiliser avec son interface moderne et intuitive
-              </p>
-            </div>
-            
-            <div className="relative bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-2xl mx-auto max-w-4xl">
-              <div className="bg-gray-100 dark:bg-gray-900 h-10 flex items-center px-4 gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                <div className="ml-4 text-xs text-gray-500 dark:text-gray-400">app.edupaie.com</div>
-              </div>
-              <img 
-                src="/lovable-uploads/41066815-b5eb-435c-b51c-b675407c2194.png" 
-                alt="Interface EduPaie" 
-                className="w-full"
-              />
-            </div>
-            
-            <div className="flex justify-center mt-8">
-              <Link to="/register">
-                <Button size="lg" className="rounded-full">
-                  Essayer gratuitement
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
-        
-        {/* Section Caractéristiques Techniques */}
-        <section className="py-20">
-          <div className="container px-4 md:px-6 max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  Développé pour répondre aux défis spécifiques des écoles africaines
-                </h2>
-                <p className="text-lg text-muted-foreground mb-8">
-                  EduPaie a été conçu en tenant compte des besoins spécifiques et des défis rencontrés par les écoles en Afrique.
-                </p>
-                
-                <div className="space-y-6">
-                  <TechFeature 
-                    icon={<Globe className="h-5 w-5 text-blue-600" />}
-                    title="Fonctionne même en connexion limitée"
-                    description="Synchronisation intelligente qui permet de travailler même avec une connexion internet intermittente."
-                  />
-                  <TechFeature 
-                    icon={<Building className="h-5 w-5 text-blue-600" />}
-                    title="Adapté aux réglementations locales"
-                    description="Conformité avec les lois fiscales et sociales des différents pays africains."
-                  />
-                  <TechFeature 
-                    icon={<CreditCard className="h-5 w-5 text-blue-600" />}
-                    title="Intégration paiements mobiles"
-                    description="Support natif pour Orange Money, MTN Mobile Money, Wave et autres services populaires."
-                  />
-                  <TechFeature 
-                    icon={<FileSpreadsheet className="h-5 w-5 text-blue-600" />}
-                    title="Export multi-formats"
-                    description="Exportez vos données facilement aux formats Excel, PDF ou CSV selon vos besoins."
-                  />
-                  <TechFeature 
-                    icon={<Download className="h-5 w-5 text-blue-600" />}
-                    title="Application légère"
-                    description="Fonctionne sur tous les appareils, y compris les ordinateurs plus anciens et les connexions lentes."
-                  />
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl">
-                    <div className="text-4xl font-bold text-blue-600 dark:text-blue-400">90%</div>
-                    <div className="text-sm mt-2">de réduction du temps passé sur la gestion des salaires</div>
-                  </div>
-                  <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl">
-                    <div className="text-4xl font-bold text-green-600 dark:text-green-400">100%</div>
-                    <div className="text-sm mt-2">conforme aux réglementations locales</div>
-                  </div>
-                </div>
-                <div className="space-y-4 mt-6">
-                  <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl">
-                    <div className="text-4xl font-bold text-purple-600 dark:text-purple-400">35%</div>
-                    <div className="text-sm mt-2">d'amélioration du taux de recouvrement des frais</div>
-                  </div>
-                  <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-xl">
-                    <div className="text-4xl font-bold text-orange-600 dark:text-orange-400">1000+</div>
-                    <div className="text-sm mt-2">établissements utilisent déjà EduPaie</div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
         
         {/* Section Témoignages */}
-        <section className="py-20 bg-gray-50 dark:bg-gray-900">
-          <div className="container px-4 md:px-6 max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Ils nous font confiance
+        <section className="py-24 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-blue-900">
+          <div className="container px-4 max-w-7xl mx-auto">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                Ils transforment leur école avec EduPaie
               </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Des écoles de toute l'Afrique utilisent EduPaie pour simplifier leur administration
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <TestimonialCard 
-                quote="EduPaie nous a permis d'économiser plus de 20 heures par mois sur la gestion des salaires de nos 35 enseignants."
-                author="Amadou Diallo"
-                role="Directeur, École Élite Dakar"
-              />
-              <TestimonialCard 
-                quote="L'intégration avec les services de paiement mobile a révolutionné notre processus de paie. Nos enseignants reçoivent leur salaire instantanément."
-                author="Marie Koné"
-                role="Responsable RH, Institut Supérieur Abidjan"
-              />
-              <TestimonialCard 
-                quote="La génération automatique des contrats et attestations nous fait gagner un temps précieux et réduit considérablement les erreurs administratives."
-                author="Samuel Okeke"
-                role="Administrateur, Lagos International School"
-              />
-            </div>
-          </div>
-        </section>
-        
-        {/* Section Tarification */}
-        <section className="py-20">
-          <div className="container px-4 md:px-6 max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Des tarifs adaptés à chaque école
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Choisissez le forfait qui correspond le mieux à vos besoins
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Découvrez comment nos clients révolutionnent leur gestion administrative
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <PricingCard 
-                title="Démarrage"
-                price="19 900"
-                period="FCFA / mois"
-                description="Parfait pour les petites écoles"
-                features={[
-                  "Jusqu'à 15 employés",
-                  "Calcul automatique de la paie",
-                  "Génération de fiches de paie",
-                  "Support par email"
-                ]}
-                buttonLabel="Commencer"
-                buttonLink="/register"
-                popular={false}
+              <TestimonialCard 
+                quote="EduPaie a transformé notre gestion RH. Nous avons économisé 25 heures par mois et éliminé toutes les erreurs de calcul."
+                author="Amadou Diallo"
+                role="Directeur, École Élite Dakar"
+                rating={5}
               />
-              <PricingCard 
-                title="Standard"
-                price="39 900"
-                period="FCFA / mois"
-                description="Idéal pour les écoles en croissance"
-                features={[
-                  "Jusqu'à 50 employés",
-                  "Toutes les fonctionnalités Démarrage",
-                  "Génération de contrats et attestations",
-                  "Intégration paiements mobiles",
-                  "Support prioritaire"
-                ]}
-                buttonLabel="Essayer gratuitement"
-                buttonLink="/register"
-                popular={true}
+              <TestimonialCard 
+                quote="L'intégration avec Orange Money a révolutionné nos paiements. Plus besoin d'attendre les virements bancaires !"
+                author="Marie Koné"
+                role="Responsable RH, Institut Supérieur Abidjan"
+                rating={5}
               />
-              <PricingCard 
-                title="Premium"
-                price="79 900"
-                period="FCFA / mois"
-                description="Pour les grandes institutions"
-                features={[
-                  "Employés illimités",
-                  "Toutes les fonctionnalités Standard",
-                  "Rapports financiers avancés",
-                  "API pour intégrations personnalisées",
-                  "Accompagnement dédié"
-                ]}
-                buttonLabel="Nous contacter"
-                buttonLink="/contact"
-                popular={false}
+              <TestimonialCard 
+                quote="Interface intuitive, support exceptionnel. EduPaie comprend vraiment nos besoins spécifiques en tant qu'école africaine."
+                author="Samuel Okeke"
+                role="Administrateur, Lagos International School"
+                rating={5}
               />
             </div>
           </div>
         </section>
         
-        {/* Section Sécurité et conformité */}
-        <section className="py-20 bg-blue-600 text-white">
-          <div className="container px-4 md:px-6 max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  Sécurité et conformité au cœur de nos priorités
-                </h2>
-                <p className="text-lg opacity-90 mb-8">
-                  EduPaie assure la protection de vos données sensibles et respecte les réglementations financières en vigueur dans chaque pays.
-                </p>
-                <ul className="space-y-4">
-                  <SecurityFeature text="Chiffrement de bout en bout des données personnelles" />
-                  <SecurityFeature text="Conformité avec les réglementations locales" />
-                  <SecurityFeature text="Sauvegarde automatique et journalière" />
-                  <SecurityFeature text="Authentification à deux facteurs" />
-                </ul>
-              </div>
-              <div className="flex justify-center">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-blue-500 rounded-full blur-2xl opacity-30 transform scale-150"></div>
-                  <div className="relative bg-gradient-to-br from-blue-400 to-blue-600 p-2 rounded-full w-64 h-64 flex items-center justify-center">
-                    <Shield className="w-32 h-32 text-white" />
-                  </div>
-                </div>
-              </div>
+        {/* Section CTA Final */}
+        <section className="py-24 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 text-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-20"></div>
+          <div className="container px-4 max-w-4xl mx-auto text-center relative">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Prêt à révolutionner votre école ?
+            </h2>
+            <p className="text-xl opacity-90 mb-12 max-w-2xl mx-auto">
+              Rejoignez plus de 1000 établissements qui ont déjà transformé leur gestion avec EduPaie
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Link to="/register">
+                <Button size="lg" className="h-16 px-12 text-lg bg-white text-blue-600 hover:bg-gray-100 rounded-xl shadow-xl">
+                  Commencer gratuitement
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Button size="lg" variant="outline" className="h-16 px-12 text-lg border-white text-white hover:bg-white/10 rounded-xl">
+                Planifier une démo
+              </Button>
             </div>
-          </div>
-        </section>
-        
-        {/* Section CTA */}
-        <section className="py-16 bg-gray-50 dark:bg-gray-900">
-          <div className="container px-4 md:px-6 max-w-6xl mx-auto">
-            <div className="bg-blue-600 text-white rounded-2xl p-8 md:p-12 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Prêt à simplifier la gestion de votre école ?
-              </h2>
-              <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
-                Rejoignez des centaines d'établissements à travers l'Afrique qui ont transformé leur gestion administrative avec EduPaie.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" asChild className="h-12 px-6 rounded-full bg-white text-blue-700 hover:bg-blue-50">
-                  <Link to="/register">
-                    Commencer gratuitement
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button size="lg" variant="outline" asChild className="h-12 px-6 rounded-full border-white text-white hover:bg-white/10">
-                  <Link to="/contact">
-                    Nous contacter
-                  </Link>
-                </Button>
+            
+            <div className="flex items-center justify-center gap-8 mt-12 text-sm opacity-80">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4" />
+                Essai gratuit 14 jours
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4" />
+                Sans engagement
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4" />
+                Support inclus
               </div>
             </div>
           </div>
@@ -525,134 +363,54 @@ const Index = () => {
   );
 };
 
-// Composants utilitaires pour la page d'accueil
-const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => {
-  return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow">
-      <div className="mb-4">{icon}</div>
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-muted-foreground">{description}</p>
+// Composants utilitaires
+const FeatureItem = ({ text }: { text: string }) => (
+  <div className="flex items-center gap-3">
+    <div className="w-5 h-5 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
+      <Check className="h-3 w-3 text-green-600 dark:text-green-400" />
     </div>
-  );
-};
+    <span className="text-sm font-medium">{text}</span>
+  </div>
+);
 
-const StepCard = ({ number, title, description }: { number: string, title: string, description: string }) => {
-  return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 text-center relative">
-      <div className="absolute -top-5 left-1/2 transform -translate-x-1/2">
-        <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">
-          {number}
-        </div>
-      </div>
-      <h3 className="text-xl font-semibold mt-4 mb-2">{title}</h3>
-      <p className="text-muted-foreground">{description}</p>
-    </div>
-  );
-};
-
-const TestimonialCard = ({ quote, author, role }: { quote: string, author: string, role: string }) => {
-  return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
-      <div className="text-4xl text-blue-600 mb-4">"</div>
-      <p className="italic text-gray-700 dark:text-gray-300 mb-6">{quote}</p>
-      <div>
-        <p className="font-semibold">{author}</p>
-        <p className="text-sm text-muted-foreground">{role}</p>
-      </div>
-    </div>
-  );
-};
-
-const PricingCard = ({ 
-  title, 
-  price, 
-  period, 
-  description, 
-  features, 
-  buttonLabel, 
-  buttonLink,
-  popular
-}: { 
-  title: string, 
-  price: string, 
-  period: string, 
-  description: string, 
-  features: string[], 
-  buttonLabel: string, 
-  buttonLink: string,
-  popular: boolean
-}) => {
-  return (
-    <div className={`
-      bg-white dark:bg-gray-800 rounded-xl shadow-sm border 
-      ${popular ? 'border-blue-600 ring-2 ring-blue-600 ring-offset-2 dark:ring-offset-gray-900' : 'border-gray-100 dark:border-gray-700'}
-      p-6 md:p-8 flex flex-col h-full relative
-    `}>
-      {popular && (
-        <div className="absolute top-0 right-0 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-bl-lg rounded-tr-lg">
-          Recommandé
-        </div>
-      )}
-      <h3 className="text-2xl font-bold mb-2">{title}</h3>
-      <p className="text-muted-foreground mb-6">{description}</p>
-      <div className="mb-6">
-        <span className="text-3xl font-bold">{price}</span>
-        <span className="text-muted-foreground"> {period}</span>
-      </div>
-      <ul className="space-y-3 mb-8 flex-grow">
-        {features.map((feature, index) => (
-          <li key={index} className="flex items-start">
-            <Check className="h-5 w-5 text-green-500 mr-2 shrink-0 mt-0.5" />
-            <span>{feature}</span>
-          </li>
-        ))}
-      </ul>
-      <Button 
-        asChild 
-        className={popular ? 'bg-blue-600 hover:bg-blue-700' : ''}
-        variant={popular ? 'default' : 'outline'}
-      >
-        <Link to={buttonLink}>
-          {buttonLabel}
-          <ChevronRight className="h-4 w-4 ml-1" />
-        </Link>
-      </Button>
-    </div>
-  );
-};
-
-const SecurityFeature = ({ text }: { text: string }) => {
-  return (
-    <li className="flex items-center">
-      <div className="w-8 h-8 rounded-full bg-blue-500/30 flex items-center justify-center mr-3">
-        <Shield className="w-4 h-4" />
-      </div>
-      <span>{text}</span>
-    </li>
-  );
-};
-
-const FeatureListItem = ({ text }: { text: string }) => {
-  return (
-    <li className="flex items-start">
-      <Check className="h-5 w-5 text-green-500 mr-2 shrink-0 mt-0.5" />
-      <span>{text}</span>
-    </li>
-  );
-};
-
-const TechFeature = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => {
-  return (
-    <div className="flex items-start gap-4">
-      <div className="bg-blue-50 dark:bg-blue-900/20 p-2 rounded-lg shrink-0">
+const AdvantageCard = ({ icon, title, description }: { 
+  icon: React.ReactNode; 
+  title: string; 
+  description: string 
+}) => (
+  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 bg-gradient-to-br from-background to-muted/30">
+    <CardContent className="p-8 text-center">
+      <div className="mb-6 flex justify-center group-hover:scale-110 transition-transform duration-300">
         {icon}
       </div>
-      <div>
-        <h3 className="font-medium mb-1">{title}</h3>
-        <p className="text-sm text-muted-foreground">{description}</p>
+      <h3 className="text-xl font-bold mb-4">{title}</h3>
+      <p className="text-muted-foreground leading-relaxed">{description}</p>
+    </CardContent>
+  </Card>
+);
+
+const TestimonialCard = ({ quote, author, role, rating }: { 
+  quote: string; 
+  author: string; 
+  role: string; 
+  rating: number 
+}) => (
+  <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+    <CardContent className="p-8">
+      <div className="flex gap-1 mb-6">
+        {[...Array(rating)].map((_, i) => (
+          <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+        ))}
       </div>
-    </div>
-  );
-};
+      <blockquote className="text-lg italic text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+        "{quote}"
+      </blockquote>
+      <div className="border-t pt-6">
+        <p className="font-bold text-lg">{author}</p>
+        <p className="text-muted-foreground">{role}</p>
+      </div>
+    </CardContent>
+  </Card>
+);
 
 export default Index;
