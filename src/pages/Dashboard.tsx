@@ -1,4 +1,3 @@
-
 import { useAuth } from "../contexts/AuthContext";
 import { Sidebar } from "../components/Sidebar";
 import { StatsCard } from "../components/StatsCard";
@@ -25,30 +24,30 @@ const Dashboard = () => {
     {
       title: "Total Employés",
       value: "45",
-      change: "+2 ce mois",
-      icon: Users,
-      color: "blue"
+      description: "+2 ce mois",
+      icon: <Users className="h-4 w-4" />,
+      trend: { value: "+2", positive: true }
     },
     {
       title: "Salaires du mois",
       value: "2,450,000 FCFA",
-      change: "+12% vs mois dernier",
-      icon: DollarSign,
-      color: "green"
+      description: "+12% vs mois dernier",
+      icon: <DollarSign className="h-4 w-4" />,
+      trend: { value: "+12%", positive: true }
     },
     {
       title: "Paiements en attente",
       value: "8",
-      change: "À traiter aujourd'hui",
-      icon: Clock,
-      color: "orange"
+      description: "À traiter aujourd'hui",
+      icon: <Clock className="h-4 w-4" />,
+      trend: { value: "8", positive: false }
     },
     {
       title: "Taux de satisfaction",
       value: "98%",
-      change: "+5% ce trimestre",
-      icon: Star,
-      color: "purple"
+      description: "+5% ce trimestre",
+      icon: <Star className="h-4 w-4" />,
+      trend: { value: "+5%", positive: true }
     }
   ];
 
@@ -133,9 +132,9 @@ const Dashboard = () => {
                 key={index}
                 title={stat.title}
                 value={stat.value}
-                change={stat.change}
+                description={stat.description}
                 icon={stat.icon}
-                trend="up"
+                trend={stat.trend}
               />
             ))}
           </div>
