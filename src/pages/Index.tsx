@@ -6,14 +6,15 @@ import {
   Check, ArrowRight, Star, Users, Calculator, 
   PieChart, Calendar, FileText, CreditCard, Shield, 
   Globe, Building, Download, Smartphone, Award,
-  TrendingUp, Zap, Target, CheckCircle, Sparkles
+  TrendingUp, Zap, Target, CheckCircle, Sparkles,
+  FileSpreadsheet, Wallet, DollarSign
 } from "lucide-react";
 
 const Index = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-gray-950 dark:via-gray-900 dark:to-blue-950">
       <main className="flex-1">
-        {/* Hero Section Premium */}
+        {/* Hero Section */}
         <section className="relative overflow-hidden min-h-screen flex items-center">
           {/* Background Effects */}
           <div className="absolute inset-0">
@@ -31,77 +32,52 @@ const Index = () => {
                 {/* Badge Premium */}
                 <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-blue-600/10 border border-blue-200/50 dark:border-blue-800/50 text-blue-700 dark:text-blue-300 rounded-full text-sm font-semibold backdrop-blur-sm">
                   <Sparkles className="h-4 w-4" />
-                  Plateforme #1 en Afrique de l'Ouest
+                  Solution #1 pour les écoles africaines
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 </div>
                 
                 <div className="space-y-6">
-                  <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.9] tracking-tight">
+                  <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-[0.9] tracking-tight">
                     <span className="block bg-gradient-to-r from-gray-900 via-blue-800 to-purple-900 dark:from-white dark:via-blue-200 dark:to-purple-200 bg-clip-text text-transparent">
-                      Des landing pages
+                      Automatisation de paie
                     </span>
                     <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent animate-gradient-x">
-                      World-Class
+                      premium
                     </span>
                     <span className="block text-gray-900 dark:text-white">
-                      pour votre école
+                      pour écoles
                     </span>
                   </h1>
                   
                   <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl font-light">
-                    Des solutions de gestion construites sur de la data avec une valeur ajoutée si forte que vos équipes auront l'impression de passer à côté de l'opportunité de leur vie.
+                    Simplifiez la gestion des salaires et des frais de scolarité avec une solution élégante et puissante, conçue spécialement pour les écoles privées africaines.
                   </p>
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   <Link to="/register">
                     <Button size="lg" className="h-16 px-10 text-lg font-semibold rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 shadow-2xl shadow-blue-500/25 border-0 text-white transition-all duration-300 hover:shadow-3xl hover:shadow-blue-500/40 hover:scale-105">
-                      Réserver un appel
+                      Essayer Gratuitement
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                   </Link>
                   <Link to="/login">
                     <Button size="lg" variant="outline" className="h-16 px-10 text-lg font-semibold rounded-2xl border-2 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm transition-all duration-300 hover:bg-white dark:hover:bg-gray-900">
-                      Voir la démo
+                      Connexion
                     </Button>
                   </Link>
                 </div>
                 
-                {/* Social Proof */}
-                <div className="flex items-center gap-8 pt-8">
-                  <div className="flex items-center gap-3">
-                    <div className="flex -space-x-3">
-                      {[1, 2, 3, 4, 5].map(i => (
-                        <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-600 border-3 border-white dark:border-gray-900 shadow-lg" />
-                      ))}
-                    </div>
-                    <div className="ml-3">
-                      <div className="flex items-center gap-1 mb-1">
-                        {[1, 2, 3, 4, 5].map(i => (
-                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                        ))}
-                        <span className="ml-2 text-sm font-semibold text-gray-700 dark:text-gray-300">4.9</span>
-                      </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">1000+ écoles nous font confiance</p>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Quote */}
-                <div className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-2xl p-6 shadow-xl">
-                  <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
-                    "J'ai obtenu d'excellents retours de la part de mes prospects et clients."
+                {/* Intégrations */}
+                <div className="pt-8">
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    Intégration complète avec les services de paiement mobile
                   </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600"></div>
-                    <div>
-                      <p className="font-semibold text-gray-900 dark:text-white">Rémi Lauer</p>
-                      <div className="flex items-center gap-1">
-                        {[1, 2, 3, 4, 5].map(i => (
-                          <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                        ))}
-                      </div>
-                    </div>
+                  <div className="flex items-center gap-6 opacity-60">
+                    <div className="text-gray-800 dark:text-gray-200 font-medium">Orange Money</div>
+                    <div className="text-gray-800 dark:text-gray-200 font-medium">MTN Money</div>
+                    <div className="text-gray-800 dark:text-gray-200 font-medium">Wave</div>
+                    <div className="text-gray-800 dark:text-gray-200 font-medium">CinetPay</div>
                   </div>
                 </div>
               </div>
@@ -120,83 +96,91 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Section Logos Clients */}
-        <section className="py-16 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border-y border-gray-200/50 dark:border-gray-700/50">
+        {/* Section Fonctionnalités */}
+        <section className="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
           <div className="container px-4 max-w-7xl mx-auto">
-            <p className="text-center text-gray-600 dark:text-gray-400 mb-12 font-medium">
-              Ils nous ont fait confiance pour passer en dimension World-Class
-            </p>
-            <div className="flex items-center justify-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-              <div className="font-bold text-2xl text-gray-800 dark:text-gray-200">Delos</div>
-              <div className="font-bold text-2xl text-gray-800 dark:text-gray-200">LeadConnect</div>
-              <div className="font-bold text-2xl text-gray-800 dark:text-gray-200">Box-Club</div>
-              <div className="font-bold text-2xl text-gray-800 dark:text-gray-200">Softriver</div>
-              <div className="font-bold text-2xl text-gray-800 dark:text-gray-200">AgentFrançais</div>
-              <div className="font-bold text-2xl text-gray-800 dark:text-gray-200">élevale</div>
+            <div className="text-center mb-16">
+              <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                Fonctionnalités Premium
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                Une suite complète d'outils pour simplifier la gestion financière de votre école
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <FeatureCard 
+                icon={<FileText className="h-8 w-8 text-blue-600" />}
+                title="Bulletins de paie automatisés"
+                description="Génération automatique de bulletins de paie PDF personnalisés avec le logo de votre école."
+              />
+              
+              <FeatureCard 
+                icon={<Wallet className="h-8 w-8 text-purple-600" />}
+                title="Intégration paiement mobile"
+                description="Acceptez les paiements via Orange Money, MTN Money et Wave grâce à l'intégration CinetPay."
+              />
+              
+              <FeatureCard 
+                icon={<FileSpreadsheet className="h-8 w-8 text-green-600" />}
+                title="Export Excel en un clic"
+                description="Exportez toutes vos données financières en un seul clic pour faciliter la comptabilité."
+              />
+              
+              <FeatureCard 
+                icon={<Calculator className="h-8 w-8 text-orange-600" />}
+                title="Calcul automatique des taxes"
+                description="Calcul précis et automatique des taxes (CNSS), déductions et primes selon la réglementation."
+              />
+              
+              <FeatureCard 
+                icon={<PieChart className="h-8 w-8 text-indigo-600" />}
+                title="Tableau de bord en temps réel"
+                description="Visualisez en temps réel l'état des salaires, frais non payés et flux de trésorerie."
+              />
+              
+              <FeatureCard 
+                icon={<Smartphone className="h-8 w-8 text-pink-600" />}
+                title="Rappels de paiement SMS"
+                description="Envoyez automatiquement des rappels SMS pour les paiements de frais de scolarité en retard."
+              />
             </div>
           </div>
         </section>
         
-        {/* Section Différentiation */}
-        <section className="py-32 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+        {/* Section Témoignages */}
+        <section className="py-24 bg-white dark:bg-gray-900">
           <div className="container px-4 max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-              <div>
-                <h2 className="font-display text-5xl md:text-6xl font-bold mb-8 leading-tight">
-                  <span className="block text-gray-900 dark:text-white">Avoir une landing page</span>
-                  <span className="block text-gray-500 dark:text-gray-400">"standard"</span>
-                  <span className="block text-gray-900 dark:text-white">ne suffit plus.</span>
-                </h2>
-                <Button size="lg" className="h-16 px-10 text-lg font-semibold rounded-2xl bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-100 transition-all duration-300">
-                  Réserver un appel
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </div>
-              <div className="text-right">
-                <p className="text-xl text-gray-600 dark:text-gray-400">
-                  Et nos <span className="font-bold text-blue-600 dark:text-blue-400">[ Partenaires ]</span> l'ont bien compris.
-                </p>
-              </div>
+            <div className="text-center mb-16">
+              <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                Ce que disent nos clients
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                Découvrez comment EduPaie a transformé la gestion financière des écoles privées
+              </p>
             </div>
-          </div>
-        </section>
-        
-        {/* Section Showcase */}
-        <section className="py-32 bg-white dark:bg-gray-900">
-          <div className="container px-4 max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-3xl transform -rotate-3 scale-105"></div>
-                <div className="relative bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-2xl">
-                  <img 
-                    src="/lovable-uploads/6b7da374-5148-4293-b4de-6f69e9253afa.png" 
-                    alt="Interface EduPaie" 
-                    className="rounded-2xl w-full"
-                  />
-                </div>
-              </div>
-              <div className="space-y-8">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-semibold">
-                  <TrendingUp className="h-4 w-4" />
-                  Peakfast
-                </div>
-                <h3 className="font-display text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
-                  Boostez votre logistique e-commerce avec Peakfast
-                </h3>
-                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                  Peakfast est un service logistique qui facilite la vie des e-commerçants en leur permettant de scaler sereinement sans soucis de logistique. Notre mission : Réaliser un design à la hauteur de leur promesse et créer une valeur perçue si grande qu'elle creuse un fossé incommensurable entre Peakfast et ses concurrents.
-                </p>
-                <Button variant="outline" className="font-semibold">
-                  Voir la version live
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm">Design</span>
-                  <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm">Landing page</span>
-                  <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm">Full animations</span>
-                  <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm">Offre Pulsor</span>
-                </div>
-              </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <TestimonialCard 
+                quote="EduPaie a révolutionné notre processus de paie. Nous économisons plus de 15 heures par mois."
+                author="Sophie Kamara"
+                role="Directrice Administrative, École Élite"
+                rating={5}
+              />
+              
+              <TestimonialCard 
+                quote="L'intégration avec les paiements mobiles a augmenté notre taux de recouvrement de 30%."
+                author="Jean-Paul Ouattara"
+                role="Fondateur, Académie Internationale"
+                rating={5}
+              />
+              
+              <TestimonialCard 
+                quote="Interface élégante et support client exceptionnel. EduPaie comprend nos défis uniques."
+                author="Marie Diop"
+                role="Comptable, Lycée Excellence"
+                rating={5}
+              />
             </div>
           </div>
         </section>
@@ -208,7 +192,7 @@ const Index = () => {
             <div className="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl"></div>
           </div>
           <div className="container px-4 max-w-4xl mx-auto text-center relative">
-            <h2 className="font-display text-5xl md:text-6xl font-bold mb-8 leading-tight">
+            <h2 className="font-display text-4xl md:text-5xl font-bold mb-8 leading-tight">
               Prêt à révolutionner votre école ?
             </h2>
             <p className="text-xl opacity-90 mb-12 max-w-2xl mx-auto font-light">
@@ -246,5 +230,59 @@ const Index = () => {
     </div>
   );
 };
+
+function FeatureCard({ 
+  icon, 
+  title, 
+  description 
+}: { 
+  icon: React.ReactNode; 
+  title: string; 
+  description: string 
+}) {
+  return (
+    <Card className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 hover:shadow-xl transition-all duration-300 hover:scale-105 h-full">
+      <CardContent className="pt-6">
+        <div className="mb-4">{icon}</div>
+        <h3 className="font-display text-xl font-semibold mb-3 text-gray-900 dark:text-white">{title}</h3>
+        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{description}</p>
+      </CardContent>
+    </Card>
+  );
+}
+
+function TestimonialCard({ 
+  quote, 
+  author, 
+  role,
+  rating 
+}: { 
+  quote: string; 
+  author: string; 
+  role: string;
+  rating: number;
+}) {
+  return (
+    <Card className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 h-full">
+      <CardContent className="pt-6">
+        <div className="flex items-center gap-1 mb-4">
+          {[...Array(rating)].map((_, i) => (
+            <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+          ))}
+        </div>
+        <blockquote className="text-lg mb-6 text-gray-700 dark:text-gray-300 italic">
+          "{quote}"
+        </blockquote>
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600"></div>
+          <div>
+            <div className="font-semibold text-gray-900 dark:text-white">{author}</div>
+            <div className="text-sm text-gray-600 dark:text-gray-400">{role}</div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
 
 export default Index;
