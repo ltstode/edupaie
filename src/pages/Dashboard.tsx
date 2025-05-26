@@ -9,7 +9,7 @@ import { PerformanceChart } from "../components/dashboard/PerformanceChart";
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen bg-gray-900 flex">
+    <div className="min-h-screen bg-background flex w-full">
       <Sidebar />
       
       <main className="flex-1 ml-72 p-8">
