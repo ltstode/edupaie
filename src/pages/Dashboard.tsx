@@ -1,32 +1,32 @@
 
-import { useAuth } from "../contexts/AuthContext";
-import { Sidebar } from "../components/Sidebar";
-import { DashboardHeader } from "../components/dashboard/DashboardHeader";
-import { StatsGrid } from "../components/dashboard/StatsGrid";
-import { TasksTable } from "../components/dashboard/TasksTable";
-import { ProjectsTable } from "../components/dashboard/ProjectsTable";
-import { PerformanceChart } from "../components/dashboard/PerformanceChart";
+import { UnifiedNavbar } from "../components/layout/UnifiedNavbar";
+import { DashboardStats } from "../components/dashboard/DashboardStats";
+import { PaymentsTabs } from "../components/dashboard/PaymentsTabs";
+import { LoadingAnimation } from "../components/ui/loading-animation";
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen bg-background flex w-full">
-      <Sidebar />
+    <div className="min-h-screen bg-gray-900">
+      <UnifiedNavbar />
       
-      <main className="flex-1 ml-72 p-8">
+      <main className="p-8">
         <div className="max-w-7xl mx-auto space-y-8">
-          <DashboardHeader />
-          <StatsGrid />
-          
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2">
-              <TasksTable />
-            </div>
+          {/* Header */}
+          <div className="flex items-center justify-between">
             <div>
-              <PerformanceChart />
+              <h1 className="text-3xl font-normal text-white mb-2">
+                Tableau de bord
+              </h1>
+              <p className="text-gray-400">Bienvenue, coll's right | Elite</p>
             </div>
+            <LoadingAnimation />
           </div>
           
-          <ProjectsTable />
+          {/* Stats Grid */}
+          <DashboardStats />
+          
+          {/* Main Content */}
+          <PaymentsTabs />
         </div>
       </main>
     </div>

@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -20,13 +19,12 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Poppins', 'sans-serif'],
-				display: ['Plus Jakarta Sans', 'sans-serif'],
-				geist: ['Geist', 'sans-serif'],
-				helvetica: ['Helvetica', 'Arial', 'sans-serif'],
+				sans: ['Inter', 'sans-serif'],
+				inter: ['Inter', 'sans-serif'],
 			},
 			letterSpacing: {
-				'tight-3': '-0.03em',
+				'tight-1': '-1%',
+				'tight-2': '-2%',
 			},
 			colors: {
 				border: 'hsl(var(--border))',

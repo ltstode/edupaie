@@ -1,19 +1,22 @@
-
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { PageLayout } from "../../components/layout/PageLayout";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Plus, Search, Download, MoreVertical } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Plus, Search, Filter, Download, Users, MoreVertical } from 'lucide-react';
+import { format } from 'date-fns';
+import { fr } from 'date-fns/locale';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuTrigger 
+} from '@/components/ui/dropdown-menu';
+import { UnifiedNavbar } from '@/components/layout/UnifiedNavbar';
+import { AnimatedButton } from '@/components/ui/animated-button';
+import { DataTable } from '@/components/DataTable';
+import { useEmployees } from '@/contexts/EmployeeContext';
 
 const mockEmployees = [
   {
@@ -52,7 +55,88 @@ const mockEmployees = [
 ];
 
 const EmployeesList = () => {
+  const { employees, isLoading } = useEmployees();
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
+
+  const columns = [
+    {
+      header: "Employé",
+      accessorKey: "name",
+      cell: ({ row }) => (
+        <div className="flex items-center gap-3">
+          <Avatar className="h-10 w-10">
+            <AvatarImage src={row.original.avatar} />
+            <AvatarFallback className="bg-primary/10 text-primary font-medium">
+              {row.original.initials}
+            </AvatarFallback>
+          </Avatar>
+          <div>
+            <div className="font-medium">{row.original.name}</div>
+            <div className="text-sm text-muted-foreground">{row.original.email}</div>
+          </div>
+        </div>
+      )
+    },
+    {
+      header: "Poste",
+      accessorKey: "position",
+      cell: ({ row }) => <div className="text-sm">{row.original.position}</div>
+    },
+    {
+      header: "Département",
+      accessorKey: "department",
+      cell: ({ row }) => <div className="text-sm">{row.original.department}</div>
+    },
+    {
+      header: "Salaire",
+      accessorKey: "salary",
+      cell: ({ row }) => <div className="font-medium">{row.original.salary}</div>
+    },
+    {
+      header: "Statut",
+      accessorKey: "status",
+      cell: ({ row }) => (
+        <div>
+          <Badge variant="success" className="text-xs">
+            {row.original.status}
+          </Badge>
+        </div>
+      )
+    },
+    {
+      header: "Actions",
+      accessorKey: "actions",
+      cell: ({ row }) => (
+        <div className="flex justify-end">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="sm">
+                <MoreVertical className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem asChild>
+                <Link to={`/employees/${row.original.id}`}>
+                  Voir le profil
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to={`/employees/edit/${row.original.id}`}>
+                  Modifier
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to={`/employees/${row.original.id}/contract`}>
+                  Contrat
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      )
+    }
+  ];
 
   const filteredEmployees = mockEmployees.filter(employee =>
     employee.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -60,114 +144,64 @@ const EmployeesList = () => {
     employee.position.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const headerAction = (
-    <>
-      <Button variant="outline" className="mr-4">
-        <Download className="h-4 w-4 mr-2" />
-        Exporter
-      </Button>
-      <Button asChild>
-        <Link to="/employees/new">
-          <Plus className="h-4 w-4 mr-2" />
-          Ajouter un employé
-        </Link>
-      </Button>
-    </>
-  );
-
   return (
-    <PageLayout
-      title="Gestion des employés"
-      subtitle="Gérez les informations et les salaires de vos employés"
-      action={headerAction}
-    >
-      <div className="space-y-6">
-        {/* Barre de recherche */}
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-          <Input
-            placeholder="Rechercher un employé..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10"
-          />
-        </div>
-
-        {/* Liste des employés */}
-        <div className="grid gap-4">
-          {/* En-tête du tableau */}
-          <div className="grid grid-cols-6 gap-4 p-4 bg-muted/50 rounded-lg font-medium text-sm text-muted-foreground">
-            <div>Employé</div>
-            <div>Poste</div>
-            <div>Département</div>
-            <div>Salaire</div>
-            <div>Statut</div>
-            <div>Actions</div>
+    <div className="min-h-screen bg-gray-900">
+      <UnifiedNavbar />
+      
+      <main className="p-8">
+        <div className="max-w-7xl mx-auto space-y-8">
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-normal text-white mb-2">
+                Employés
+              </h1>
+              <p className="text-gray-400">Gérez votre équipe pédagogique et administrative</p>
+            </div>
+            <div className="flex items-center gap-4">
+              <AnimatedButton asChild>
+                <Link to="/employees/new" className="flex items-center gap-2">
+                  <Plus className="h-4 w-4" />
+                  Nouvel employé
+                </Link>
+              </AnimatedButton>
+            </div>
           </div>
 
-          {/* Lignes des employés */}
-          {filteredEmployees.map((employee) => (
-            <Card key={employee.id} className="transition-all hover:shadow-md">
-              <CardContent className="p-4">
-                <div className="grid grid-cols-6 gap-4 items-center">
-                  <div className="flex items-center gap-3">
-                    <Avatar className="h-10 w-10">
-                      <AvatarImage src={employee.avatar} />
-                      <AvatarFallback className="bg-primary/10 text-primary font-medium">
-                        {employee.initials}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <div className="font-medium">{employee.name}</div>
-                      <div className="text-sm text-muted-foreground">{employee.email}</div>
-                    </div>
-                  </div>
-                  
-                  <div className="text-sm">{employee.position}</div>
-                  
-                  <div className="text-sm">{employee.department}</div>
-                  
-                  <div className="font-medium">{employee.salary}</div>
-                  
-                  <div>
-                    <Badge variant="success" className="text-xs">
-                      {employee.status}
-                    </Badge>
-                  </div>
-                  
-                  <div className="flex justify-end">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="sm">
-                          <MoreVertical className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem asChild>
-                          <Link to={`/employees/${employee.id}`}>
-                            Voir le profil
-                          </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem asChild>
-                          <Link to={`/employees/edit/${employee.id}`}>
-                            Modifier
-                          </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem asChild>
-                          <Link to={`/employees/${employee.id}/contract`}>
-                            Contrat
-                          </Link>
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </div>
+          {/* Search and filters */}
+          <Card className="bg-gray-800 border-gray-700">
+            <CardContent className="p-6">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="flex-1 relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Input
+                    placeholder="Rechercher un employé..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10 bg-gray-700 border-gray-600 text-white"
+                  />
                 </div>
-              </CardContent>
-            </Card>
-          ))}
+                <Button variant="outline" className="border-gray-600 text-gray-300">
+                  <Filter className="h-4 w-4 mr-2" />
+                  Filtres
+                </Button>
+                <Button variant="outline" className="border-gray-600 text-gray-300">
+                  <Download className="h-4 w-4 mr-2" />
+                  Exporter
+                </Button>
+              </div>
+
+              {/* DataTable */}
+              <DataTable
+                columns={columns}
+                data={filteredEmployees}
+                isLoading={isLoading}
+              />
+            </CardContent>
+          </Card>
         </div>
-      </div>
-    </PageLayout>
+      </main>
+    </div>
   );
 };
 
