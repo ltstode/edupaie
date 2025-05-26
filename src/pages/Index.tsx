@@ -37,7 +37,7 @@ const Index = () => {
                     <Sparkles className="h-4 w-4" />
                     <div className="absolute inset-0 h-4 w-4 bg-blue-400 rounded-full blur-sm opacity-30 animate-pulse"></div>
                   </div>
-                  Solution N°1 pour la gestion de paie scolaire en Afrique
+                  <span className="font-geist tracking-tight-3">Solution N°1 pour la gestion de paie scolaire en Afrique</span>
                   <div className="relative">
                     <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
                     <div className="absolute inset-0 w-2 h-2 bg-emerald-400 rounded-full blur-sm opacity-50"></div>
@@ -45,7 +45,7 @@ const Index = () => {
                 </div>
                 
                 <div className="space-y-10">
-                  <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
+                  <h1 className="font-geist text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight-3">
                     <span className="block bg-gradient-to-r from-gray-900 via-blue-800 to-purple-900 dark:from-white dark:via-blue-200 dark:to-purple-200 bg-clip-text text-transparent">
                       Révolutionnez la
                     </span>
@@ -57,7 +57,7 @@ const Index = () => {
                     </span>
                   </h1>
                   
-                  <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl font-light">
+                  <p className="font-helvetica text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl font-light tracking-tight-3">
                     Automatisez entièrement la gestion des salaires et des frais de scolarité avec une plateforme moderne, sécurisée et adaptée aux écoles privées africaines.
                   </p>
                 </div>
@@ -65,7 +65,7 @@ const Index = () => {
                 {/* Enhanced 3D Buttons */}
                 <div className="flex flex-col sm:flex-row gap-6 pt-8">
                   <Link to="/register" className="group">
-                    <Button size="lg" className="relative h-16 px-10 text-base font-semibold rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 shadow-2xl shadow-blue-500/25 border-0 text-white transition-all duration-500 hover:shadow-3xl hover:shadow-blue-500/40 hover:scale-[1.05] transform-gpu perspective-1000 hover:-translate-y-2">
+                    <Button size="lg" className="relative h-16 px-10 text-base font-semibold font-geist tracking-tight-3 rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 shadow-2xl shadow-blue-500/25 border-0 text-white transition-all duration-500 hover:shadow-3xl hover:shadow-blue-500/40 hover:scale-[1.05] transform-gpu perspective-1000 hover:-translate-y-2">
                       {/* Glass overlay */}
                       <div className="absolute inset-0 bg-white/10 rounded-2xl backdrop-blur-sm"></div>
                       {/* 3D effect layers */}
@@ -83,7 +83,7 @@ const Index = () => {
                   </Link>
                   
                   <Link to="/login" className="group">
-                    <Button size="lg" variant="outline" className="relative h-16 px-10 text-base font-medium rounded-2xl border-2 border-white/20 dark:border-gray-700/30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl transition-all duration-500 hover:bg-white dark:hover:bg-gray-900 hover:scale-[1.05] hover:shadow-2xl hover:shadow-gray-500/20 hover:-translate-y-2 transform-gpu">
+                    <Button size="lg" variant="outline" className="relative h-16 px-10 text-base font-medium font-geist tracking-tight-3 rounded-2xl border-2 border-white/20 dark:border-gray-700/30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl transition-all duration-500 hover:bg-white dark:hover:bg-gray-900 hover:scale-[1.05] hover:shadow-2xl hover:shadow-gray-500/20 hover:-translate-y-2 transform-gpu">
                       {/* Glass overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-gray-100/50 to-white/50 dark:from-gray-800/50 dark:to-gray-700/50 rounded-2xl"></div>
                       
@@ -97,13 +97,13 @@ const Index = () => {
                 
                 {/* Enhanced Trust Indicators */}
                 <div className="pt-12 space-y-6">
-                  <p className="text-sm text-gray-500 dark:text-gray-400 font-light">
+                  <p className="font-helvetica text-sm text-gray-500 dark:text-gray-400 font-light tracking-tight-3">
                     Intégré avec tous les services de paiement mobile populaires
                   </p>
                   <div className="flex items-center gap-8 opacity-70">
                     {["Orange Money", "MTN Money", "Wave", "CinetPay"].map((service, index) => (
                       <div key={service} className="group cursor-pointer">
-                        <div className="text-gray-700 dark:text-gray-300 font-medium text-sm transition-all duration-300 group-hover:text-gray-900 dark:group-hover:text-white group-hover:scale-110">
+                        <div className="font-helvetica text-gray-700 dark:text-gray-300 font-medium text-sm tracking-tight-3 transition-all duration-300 group-hover:text-gray-900 dark:group-hover:text-white group-hover:scale-110">
                           {service}
                         </div>
                       </div>
@@ -147,10 +147,10 @@ const Index = () => {
           
           <div className="container relative px-8 max-w-7xl mx-auto">
             <div className="text-center mb-24 space-y-8">
-              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white">
+              <h2 className="font-geist text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white tracking-tight-3">
                 Fonctionnalités clés
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
+              <p className="font-helvetica text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto font-light leading-relaxed tracking-tight-3">
                 Obtenez facilement tout votre personnel payé sur un système automatisé
               </p>
             </div>
@@ -601,8 +601,8 @@ function KeyFeatureCard({
       
       <CardContent className="relative pt-8 pb-6 px-6 space-y-4">
         <div className="group-hover:scale-110 transition-transform duration-500">{icon}</div>
-        <h3 className="font-display text-xl font-bold text-gray-900 dark:text-white leading-tight">{title}</h3>
-        <p className="text-gray-600 dark:text-gray-300 leading-relaxed font-light text-sm">{description}</p>
+        <h3 className="font-geist text-xl font-bold text-gray-900 dark:text-white leading-tight tracking-tight-3">{title}</h3>
+        <p className="font-helvetica text-gray-600 dark:text-gray-300 leading-relaxed font-light text-sm tracking-tight-3">{description}</p>
       </CardContent>
       
       <div className="absolute -bottom-1 left-4 right-4 h-2 bg-gray-400/20 dark:bg-gray-600/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 group-hover:bottom-0 transition-all duration-700"></div>
@@ -626,8 +626,8 @@ function FeatureCard({
       
       <CardContent className="relative pt-10 pb-8 px-8 space-y-6">
         <div className="group-hover:scale-110 transition-transform duration-500">{icon}</div>
-        <h3 className="font-display text-2xl font-bold text-gray-900 dark:text-white leading-tight">{title}</h3>
-        <p className="text-gray-600 dark:text-gray-300 leading-relaxed font-light">{description}</p>
+        <h3 className="font-geist text-2xl font-bold text-gray-900 dark:text-white leading-tight tracking-tight-3">{title}</h3>
+        <p className="font-helvetica text-gray-600 dark:text-gray-300 leading-relaxed font-light">{description}</p>
       </CardContent>
       
       <div className="absolute -bottom-1 left-4 right-4 h-2 bg-gray-400/20 dark:bg-gray-600/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 group-hover:bottom-0 transition-all duration-700"></div>
