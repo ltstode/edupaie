@@ -1,9 +1,9 @@
 
 import { Link, useLocation } from "react-router-dom";
 import { 
-  LayoutDashboard, DollarSign, Users, BookOpen, TrendingUp, 
+  Home, DollarSign, Users, BookOpen, TrendingUp, 
   BarChart2, Settings, HelpCircle, ChevronRight,
-  User
+  Building2, User
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "../contexts/AuthContext";
@@ -18,7 +18,7 @@ export function Sidebar() {
   };
   
   const mainNavItems = [
-    { href: "/dashboard", icon: LayoutDashboard, label: "Tableau de bord", primary: true },
+    { href: "/dashboard", icon: Home, label: "Tableau de bord", primary: true },
     { href: "/employees", icon: Users, label: "Employés" },
     { href: "/payroll", icon: DollarSign, label: "Paie" },
     { href: "/payments", icon: BookOpen, label: "Paiements" },
@@ -32,7 +32,7 @@ export function Sidebar() {
   ];
   
   return (
-    <aside className="w-72 h-screen bg-card border-r border-border/50 fixed left-0 top-0 z-30 flex flex-col">
+    <aside className="w-72 h-screen bg-gradient-to-b from-background to-muted/20 border-r border-border/50 fixed left-0 top-0 z-30 flex flex-col backdrop-blur-sm">
       {/* Header */}
       <div className="p-6 border-b border-border/50">
         <Link to="/dashboard" className="flex items-center gap-3 group">

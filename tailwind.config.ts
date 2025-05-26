@@ -19,12 +19,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
-				inter: ['Inter', 'sans-serif'],
-			},
-			letterSpacing: {
-				'tight-1': '-1%',
-				'tight-2': '-2%',
+				sans: ['Poppins', 'sans-serif'],
+				display: ['Plus Jakarta Sans', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
