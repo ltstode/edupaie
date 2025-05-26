@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -7,7 +6,9 @@ import {
   PieChart, Calendar, FileText, CreditCard, Shield, 
   Globe, Building, Download, Smartphone, Award,
   TrendingUp, Zap, Target, CheckCircle, Sparkles,
-  FileSpreadsheet, Wallet, DollarSign
+  FileSpreadsheet, Wallet, DollarSign, Clock,
+  BarChart3, Banknote, Receipt, ChartLine,
+  UserCheck, School, GraduationCap, Megaphone
 } from "lucide-react";
 
 const Index = () => {
@@ -136,7 +137,7 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Enhanced Features Section */}
+        {/* Key Features Section */}
         <section className="py-40 bg-gradient-to-b from-white via-gray-50/30 to-white dark:from-gray-900 dark:via-gray-800/30 dark:to-gray-900 relative">
           {/* Background elements */}
           <div className="absolute inset-0">
@@ -144,6 +145,134 @@ const Index = () => {
             <div className="absolute bottom-1/4 right-10 w-72 h-72 bg-gradient-to-br from-purple-400/5 to-pink-600/5 rounded-full blur-3xl"></div>
           </div>
           
+          <div className="container relative px-8 max-w-7xl mx-auto">
+            <div className="text-center mb-24 space-y-8">
+              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white">
+                Fonctionnalités clés
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
+                Obtenez facilement tout votre personnel payé sur un système automatisé
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+              <KeyFeatureCard 
+                icon={<Clock className="h-8 w-8 text-blue-600" />}
+                title="Gestion avancée"
+                description="Créez des bulletins de paie personnalisés et automatiques"
+              />
+              
+              <KeyFeatureCard 
+                icon={<BarChart3 className="h-8 w-8 text-purple-600" />}
+                title="Suivi des indicateurs de paie prioritaires"
+                description="Suivez vos indicateurs clés avec des rapports détaillés"
+              />
+              
+              <KeyFeatureCard 
+                icon={<Banknote className="h-8 w-8 text-green-600" />}
+                title="Gestion des budgets de paie panifiables"
+                description="Planifiez et gérez facilement vos budgets de paie"
+              />
+              
+              <KeyFeatureCard 
+                icon={<Receipt className="h-8 w-8 text-orange-600" />}
+                title="Suivi des justificatifs financiers"
+                description="Conservez et gérez tous vos justificatifs en un lieu"
+              />
+              
+              <KeyFeatureCard 
+                icon={<ChartLine className="h-8 w-8 text-indigo-600" />}
+                title="Gestion informatisée de vente de services"
+                description="Automatisez la facturation de vos services éducatifs"
+              />
+              
+              <KeyFeatureCard 
+                icon={<UserCheck className="h-8 w-8 text-pink-600" />}
+                title="Transformez la gestion de votre école"
+                description="Une solution complète pour moderniser votre établissement"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Product Showcase Section */}
+        <section className="py-40 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white relative overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-float"></div>
+            <div className="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }}></div>
+          </div>
+          
+          <div className="container relative px-8 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-8">
+                <div className="space-y-6">
+                  <h2 className="font-display text-4xl md:text-5xl font-bold leading-tight">
+                    Une interface simple et intuitive
+                  </h2>
+                  <p className="text-xl opacity-90 font-light leading-relaxed">
+                    Tableau de bord moderne conçu spécialement pour les directeurs d'école qui veulent gagner du temps et améliorer leur efficacité.
+                  </p>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-6 w-6 text-green-400" />
+                    <span className="text-lg">Interface intuitive et facile à utiliser</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-6 w-6 text-green-400" />
+                    <span className="text-lg">Données en temps réel</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="h-6 w-6 text-green-400" />
+                    <span className="text-lg">Rapports détaillés automatiques</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="relative">
+                <div className="bg-white/10 backdrop-blur-xl p-6 rounded-3xl border border-white/20">
+                  <img 
+                    src="/lovable-uploads/41066815-b5eb-435c-b51c-b675407c2194.png" 
+                    alt="Interface EduPaie" 
+                    className="rounded-2xl w-full shadow-2xl"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Performance Stats Section */}
+        <section className="py-40 bg-gradient-to-b from-white via-blue-50/20 to-white dark:from-gray-900 dark:via-blue-950/20 dark:to-gray-900">
+          <div className="container px-8 max-w-7xl mx-auto">
+            <div className="text-center mb-20 space-y-8">
+              <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+                Déjà adopté par les meilleures écoles
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto font-light">
+                Des résultats mesurables qui transforment la gestion des écoles
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+              <StatCard number="98%" label="Réduction des erreurs de paie" />
+              <StatCard number="75%" label="Gain de temps administratif" />
+              <StatCard number="100%" label="Satisfaction client" />
+              <StatCard number="1500+" label="Écoles utilisatrices" />
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <StatCard number="24h" label="Mise en place" color="blue" />
+              <StatCard number="99.9%" label="Disponibilité" color="green" />
+              <StatCard number="50%" label="Réduction des coûts" color="purple" />
+              <StatCard number="24/7" label="Support technique" color="orange" />
+            </div>
+          </div>
+        </section>
+
+        {/* Detailed Features Section */}
+        <section className="py-40 bg-gradient-to-b from-white via-gray-50/30 to-white dark:from-gray-900 dark:via-gray-800/30 dark:to-gray-900 relative">
           <div className="container relative px-8 max-w-7xl mx-auto">
             <div className="text-center mb-24 space-y-8">
               <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white">
@@ -193,16 +322,57 @@ const Index = () => {
             </div>
           </div>
         </section>
-        
-        {/* Enhanced Testimonials Section */}
+
+        {/* Trust & Security Section */}
+        <section className="py-40 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white relative overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute top-1/4 left-10 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl animate-float"></div>
+            <div className="absolute bottom-1/4 right-10 w-64 h-64 bg-purple-500/15 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }}></div>
+          </div>
+          
+          <div className="container relative px-8 max-w-7xl mx-auto text-center">
+            <div className="space-y-12">
+              <div className="space-y-8">
+                <div className="inline-flex items-center justify-center w-24 h-24 bg-white/10 backdrop-blur-xl rounded-full border border-white/20 mb-8">
+                  <Shield className="h-12 w-12 text-blue-400" />
+                </div>
+                <h2 className="font-display text-4xl md:text-5xl font-bold leading-tight">
+                  Sécurité et conformité au cœur de nos priorités
+                </h2>
+                <p className="text-xl opacity-90 max-w-4xl mx-auto font-light leading-relaxed">
+                  Vos données sont protégées par les plus hauts standards de sécurité. Nous respectons toutes les réglementations locales et internationales pour garantir la confidentialité de vos informations financières.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <TrustCard 
+                  icon={<Shield className="h-8 w-8 text-green-400" />}
+                  title="Chiffrement SSL 256-bit"
+                  description="Protection maximale de vos données sensibles"
+                />
+                <TrustCard 
+                  icon={<CheckCircle className="h-8 w-8 text-blue-400" />}
+                  title="Conformité RGPD"
+                  description="Respect des réglementations européennes"
+                />
+                <TrustCard 
+                  icon={<Award className="h-8 w-8 text-purple-400" />}
+                  title="Certifications ISO"
+                  description="Standards internationaux de qualité"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials Section */}
         <section className="py-40 bg-gradient-to-br from-white via-blue-50/20 to-purple-50/20 dark:from-gray-900 dark:via-blue-950/20 dark:to-purple-950/20 relative">
-          {/* Background pattern */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.05),rgba(255,255,255,0))]"></div>
           
           <div className="container relative px-8 max-w-7xl mx-auto">
             <div className="text-center mb-24 space-y-8">
               <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white">
-                Témoignages de nos clients
+                Ils nous font confiance
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
                 Découvrez comment EduPaie révolutionne la gestion financière des écoles privées à travers l'Afrique
@@ -233,34 +403,149 @@ const Index = () => {
             </div>
           </div>
         </section>
-        
-        {/* Enhanced CTA Section */}
+
+        {/* Pricing Section */}
+        <section className="py-40 bg-gradient-to-b from-white via-gray-50/30 to-white dark:from-gray-900 dark:via-gray-800/30 dark:to-gray-900">
+          <div className="container px-8 max-w-7xl mx-auto">
+            <div className="text-center mb-24 space-y-8">
+              <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+                Des tarifs adaptés à chaque école
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto font-light">
+                Choisissez la formule qui correspond à la taille de votre établissement
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <PricingCard
+                title="Starter"
+                price="15 000"
+                period="FCFA/mois"
+                description="Parfait pour les petites écoles"
+                features={[
+                  "Jusqu'à 20 employés",
+                  "Bulletins de paie PDF",
+                  "Calculs automatiques",
+                  "Support email",
+                  "Exports Excel"
+                ]}
+                buttonText="Commencer"
+                popular={false}
+              />
+              
+              <PricingCard
+                title="Professional"
+                price="35 000"
+                period="FCFA/mois"
+                description="Idéal pour les écoles en croissance"
+                features={[
+                  "Jusqu'à 100 employés",
+                  "Tout du plan Starter",
+                  "Paiements mobiles",
+                  "Rappels SMS",
+                  "Support prioritaire",
+                  "Rapports avancés"
+                ]}
+                buttonText="Choisir Pro"
+                popular={true}
+              />
+              
+              <PricingCard
+                title="Enterprise"
+                price="60 000"
+                period="FCFA/mois"
+                description="Pour les grands établissements"
+                features={[
+                  "Employés illimités",
+                  "Tout du plan Pro",
+                  "API personnalisée",
+                  "Multi-établissements",
+                  "Manager dédié",
+                  "Formation incluse"
+                ]}
+                buttonText="Nous contacter"
+                popular={false}
+              />
+            </div>
+            
+            <div className="text-center mt-16">
+              <p className="text-gray-600 dark:text-gray-400 mb-8">
+                14 jours d'essai gratuit • Aucune carte de crédit requise • Configuration incluse
+              </p>
+              <div className="flex flex-wrap justify-center gap-8 text-sm text-gray-500 dark:text-gray-400">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500" />
+                  Migration gratuite
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500" />
+                  Formation incluse
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500" />
+                  Support 24/7
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-40 bg-gradient-to-br from-blue-50/30 via-white to-purple-50/30 dark:from-blue-950/30 dark:via-gray-900 dark:to-purple-950/30">
+          <div className="container px-8 max-w-4xl mx-auto">
+            <div className="text-center mb-20 space-y-8">
+              <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+                Questions fréquentes
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 font-light">
+                Trouvez rapidement les réponses à vos questions
+              </p>
+            </div>
+            
+            <div className="space-y-6">
+              <FAQItem 
+                question="Combien de temps faut-il pour mettre en place EduPaie ?"
+                answer="La mise en place d'EduPaie est très rapide. En moyenne, il faut moins de 24 heures pour configurer complètement votre système. Notre équipe vous accompagne dans la migration de vos données existantes."
+              />
+              <FAQItem 
+                question="EduPaie est-il conforme à la réglementation locale ?"
+                answer="Absolument ! EduPaie est spécialement conçu pour respecter la réglementation des pays africains (CNSS, IUTS, etc.). Nos calculs sont automatiquement mis à jour selon les dernières lois en vigueur."
+              />
+              <FAQItem 
+                question="Puis-je essayer EduPaie gratuitement ?"
+                answer="Oui, nous offrons 14 jours d'essai gratuit sans aucune carte de crédit requise. Vous aurez accès à toutes les fonctionnalités pour tester la solution avec vos propres données."
+              />
+              <FAQItem 
+                question="Quel support est disponible ?"
+                answer="Nous proposons un support complet : chat en direct, email, téléphone et même assistance à distance. Notre équipe locale comprend parfaitement les défis des écoles africaines."
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA Section */}
         <section className="py-48 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white relative overflow-hidden">
-          {/* Enhanced background effects */}
           <div className="absolute inset-0">
             <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-float"></div>
             <div className="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }}></div>
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-indigo-500/15 rounded-full blur-3xl animate-float" style={{ animationDelay: "4s" }}></div>
           </div>
           
-          {/* Subtle pattern overlay */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_70%)]"></div>
           
           <div className="container relative px-8 max-w-6xl mx-auto text-center space-y-16">
             <div className="space-y-10">
               <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Transformez votre école dès aujourd'hui
+                Prêt à simplifier la gestion de votre école ?
               </h2>
               <p className="text-xl md:text-2xl opacity-90 max-w-4xl mx-auto font-light leading-relaxed">
                 Rejoignez plus de 1 500 établissements scolaires qui ont déjà révolutionné leur gestion financière avec EduPaie
               </p>
             </div>
             
-            {/* Enhanced CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-8 justify-center pt-8">
               <Link to="/register" className="group">
                 <Button size="lg" className="relative h-20 px-12 text-xl font-semibold bg-white text-gray-900 hover:bg-gray-100 rounded-2xl shadow-2xl transition-all duration-500 hover:scale-110 hover:shadow-3xl transform-gpu hover:-translate-y-3">
-                  {/* Glass overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-100/50 to-white/80 rounded-2xl"></div>
                   
                   <span className="relative z-10 flex items-center gap-3">
@@ -268,23 +553,19 @@ const Index = () => {
                     <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
                   
-                  {/* Enhanced 3D shadow */}
                   <div className="absolute -bottom-2 left-3 right-3 h-3 bg-gray-400/30 rounded-2xl blur-lg group-hover:bottom-0 transition-all duration-500"></div>
                 </Button>
               </Link>
               
               <Button size="lg" variant="outline" className="relative h-20 px-12 text-xl font-medium border-white/30 text-white hover:bg-white/10 rounded-2xl backdrop-blur-xl transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:-translate-y-3 transform-gpu">
-                {/* Glass overlay */}
                 <div className="absolute inset-0 bg-white/5 rounded-2xl"></div>
                 
                 <span className="relative z-10">Demander une démonstration</span>
                 
-                {/* 3D shadow */}
                 <div className="absolute -bottom-2 left-3 right-3 h-3 bg-white/10 rounded-2xl blur-lg hover:bottom-0 transition-all duration-500"></div>
               </Button>
             </div>
             
-            {/* Enhanced trust indicators */}
             <div className="flex items-center justify-center gap-12 pt-12 text-base opacity-80">
               {[
                 { icon: CheckCircle, text: "14 jours d'essai gratuit" },
@@ -304,6 +585,31 @@ const Index = () => {
   );
 };
 
+function KeyFeatureCard({ 
+  icon, 
+  title, 
+  description 
+}: { 
+  icon: React.ReactNode; 
+  title: string; 
+  description: string 
+}) {
+  return (
+    <Card className="group relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-white/30 dark:border-gray-700/30 hover:shadow-3xl transition-all duration-700 hover:scale-[1.03] h-full hover:-translate-y-2 transform-gpu">
+      <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-white/30 to-transparent dark:from-gray-800/50 dark:via-gray-800/30 rounded-lg"></div>
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-indigo-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+      
+      <CardContent className="relative pt-8 pb-6 px-6 space-y-4">
+        <div className="group-hover:scale-110 transition-transform duration-500">{icon}</div>
+        <h3 className="font-display text-xl font-bold text-gray-900 dark:text-white leading-tight">{title}</h3>
+        <p className="text-gray-600 dark:text-gray-300 leading-relaxed font-light text-sm">{description}</p>
+      </CardContent>
+      
+      <div className="absolute -bottom-1 left-4 right-4 h-2 bg-gray-400/20 dark:bg-gray-600/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 group-hover:bottom-0 transition-all duration-700"></div>
+    </Card>
+  );
+}
+
 function FeatureCard({ 
   icon, 
   title, 
@@ -315,10 +621,7 @@ function FeatureCard({
 }) {
   return (
     <Card className="group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border border-white/20 dark:border-gray-700/20 hover:shadow-3xl transition-all duration-700 hover:scale-[1.05] h-full hover:-translate-y-2 transform-gpu">
-      {/* Glass morphism overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-white/20 to-transparent dark:from-gray-800/40 dark:via-gray-800/20 rounded-lg"></div>
-      
-      {/* Subtle glow effect */}
       <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-indigo-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
       
       <CardContent className="relative pt-10 pb-8 px-8 space-y-6">
@@ -327,9 +630,56 @@ function FeatureCard({
         <p className="text-gray-600 dark:text-gray-300 leading-relaxed font-light">{description}</p>
       </CardContent>
       
-      {/* Bottom shadow for 3D effect */}
       <div className="absolute -bottom-1 left-4 right-4 h-2 bg-gray-400/20 dark:bg-gray-600/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 group-hover:bottom-0 transition-all duration-700"></div>
     </Card>
+  );
+}
+
+function StatCard({ 
+  number, 
+  label, 
+  color = "blue" 
+}: { 
+  number: string; 
+  label: string; 
+  color?: string;
+}) {
+  const colors = {
+    blue: "from-blue-500 to-blue-600",
+    green: "from-green-500 to-green-600", 
+    purple: "from-purple-500 to-purple-600",
+    orange: "from-orange-500 to-orange-600"
+  };
+
+  return (
+    <Card className="group relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-white/30 dark:border-gray-700/30 hover:shadow-2xl transition-all duration-500 hover:scale-105 text-center p-8">
+      <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-white/30 to-transparent dark:from-gray-800/50 dark:via-gray-800/30 rounded-lg"></div>
+      
+      <CardContent className="relative space-y-4 p-0">
+        <div className={`text-4xl md:text-5xl font-bold bg-gradient-to-r ${colors[color]} bg-clip-text text-transparent`}>
+          {number}
+        </div>
+        <p className="text-gray-600 dark:text-gray-300 font-medium leading-tight">{label}</p>
+      </CardContent>
+    </Card>
+  );
+}
+
+function TrustCard({ 
+  icon, 
+  title, 
+  description 
+}: { 
+  icon: React.ReactNode; 
+  title: string; 
+  description: string 
+}) {
+  return (
+    <div className="group text-center space-y-4 p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-500">
+      <div className="group-hover:scale-110 transition-transform duration-500">{icon}</div>
+      <h3 className="font-semibold text-xl">{title}</h3>
+      <p className="text-white/80 font-light">{description}</p>
+    </div>
   );
 }
 
@@ -346,10 +696,7 @@ function TestimonialCard({
 }) {
   return (
     <Card className="group relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-white/30 dark:border-gray-700/30 h-full hover:shadow-3xl transition-all duration-700 hover:scale-[1.03] hover:-translate-y-2 transform-gpu">
-      {/* Glass morphism overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-white/30 to-transparent dark:from-gray-800/50 dark:via-gray-800/30 rounded-lg"></div>
-      
-      {/* Subtle glow */}
       <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
       
       <CardContent className="relative pt-10 pb-8 px-8 space-y-8">
@@ -372,8 +719,89 @@ function TestimonialCard({
         </div>
       </CardContent>
       
-      {/* Bottom shadow for 3D effect */}
       <div className="absolute -bottom-1 left-4 right-4 h-2 bg-gray-400/20 dark:bg-gray-600/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 group-hover:bottom-0 transition-all duration-700"></div>
+    </Card>
+  );
+}
+
+function PricingCard({ 
+  title, 
+  price, 
+  period,
+  description, 
+  features, 
+  buttonText, 
+  popular 
+}: { 
+  title: string; 
+  price: string; 
+  period: string;
+  description: string; 
+  features: string[]; 
+  buttonText: string; 
+  popular: boolean 
+}) {
+  return (
+    <Card className={`group relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-white/30 dark:border-gray-700/30 hover:shadow-3xl transition-all duration-700 hover:scale-[1.03] hover:-translate-y-2 transform-gpu ${popular ? 'ring-2 ring-blue-500' : ''}`}>
+      {popular && (
+        <div className="absolute -top-4 left-0 right-0 flex justify-center">
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold py-2 px-6 rounded-full shadow-lg">
+            Recommandé
+          </div>
+        </div>
+      )}
+      
+      <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-white/30 to-transparent dark:from-gray-800/50 dark:via-gray-800/30 rounded-lg"></div>
+      
+      <CardContent className="relative p-8 space-y-8">
+        <div className="space-y-4">
+          <h3 className="font-display text-2xl font-bold text-gray-900 dark:text-white">{title}</h3>
+          <p className="text-gray-600 dark:text-gray-300 font-light">{description}</p>
+        </div>
+        
+        <div className="space-y-2">
+          <div className="flex items-baseline gap-2">
+            <span className="text-4xl font-bold text-gray-900 dark:text-white">{price}</span>
+            <span className="text-gray-600 dark:text-gray-400">{period}</span>
+          </div>
+        </div>
+        
+        <ul className="space-y-4">
+          {features.map((feature, i) => (
+            <li key={i} className="flex items-start gap-3">
+              <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+              <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+            </li>
+          ))}
+        </ul>
+        
+        <Link to="/register" className="block">
+          <Button 
+            className={`w-full h-12 font-semibold rounded-xl transition-all duration-500 ${popular ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-xl' : 'bg-white hover:bg-gray-50 text-gray-900 border-2 border-gray-200 hover:border-gray-300'}`}
+          >
+            {buttonText}
+          </Button>
+        </Link>
+      </CardContent>
+    </Card>
+  );
+}
+
+function FAQItem({ 
+  question, 
+  answer 
+}: { 
+  question: string; 
+  answer: string 
+}) {
+  return (
+    <Card className="group bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-white/30 dark:border-gray-700/30 hover:shadow-xl transition-all duration-500">
+      <CardContent className="p-8">
+        <div className="space-y-4">
+          <h3 className="font-display text-xl font-semibold text-gray-900 dark:text-white leading-tight">{question}</h3>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed font-light">{answer}</p>
+        </div>
+      </CardContent>
     </Card>
   );
 }
