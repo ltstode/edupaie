@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { AnimatedButton } from "@/components/ui/animated-button";
 import { Link } from "react-router-dom";
 import { 
   Check, ArrowRight, Star, Users, Calculator, 
@@ -64,35 +65,16 @@ const Index = () => {
                 
                 {/* Enhanced 3D Buttons */}
                 <div className="flex flex-col sm:flex-row gap-6 pt-8">
-                  <Link to="/register" className="group">
-                    <Button size="lg" className="relative h-16 px-10 text-base font-semibold rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 shadow-2xl shadow-blue-500/25 border-0 text-white transition-all duration-500 hover:shadow-3xl hover:shadow-blue-500/40 hover:scale-[1.05] transform-gpu perspective-1000 hover:-translate-y-2">
-                      {/* Glass overlay */}
-                      <div className="absolute inset-0 bg-white/10 rounded-2xl backdrop-blur-sm"></div>
-                      {/* 3D effect layers */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
-                      <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-2xl blur opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
-                      
-                      <span className="relative z-10 flex items-center gap-3">
-                        Démarrer l'essai gratuit
-                        <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-                      </span>
-                      
-                      {/* Bottom shadow for 3D effect */}
-                      <div className="absolute -bottom-1 left-2 right-2 h-2 bg-gradient-to-r from-blue-600/30 via-purple-600/30 to-indigo-600/30 rounded-2xl blur-md group-hover:bottom-0 transition-all duration-500"></div>
-                    </Button>
-                  </Link>
+                  <AnimatedButton asChild size="lg" className="relative h-16 px-10 text-base font-semibold rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 shadow-2xl shadow-blue-500/25 border-0 text-white transition-all duration-500 hover:shadow-3xl hover:shadow-blue-500/40 hover:scale-[1.05] transform-gpu perspective-1000 hover:-translate-y-2">
+                    <Link to="/register" className="group flex items-center gap-3">
+                      Démarrer l'essai gratuit
+                      <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    </Link>
+                  </AnimatedButton>
                   
-                  <Link to="/login" className="group">
-                    <Button size="lg" variant="outline" className="relative h-16 px-10 text-base font-medium rounded-2xl border-2 border-white/20 dark:border-gray-700/30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl transition-all duration-500 hover:bg-white dark:hover:bg-gray-900 hover:scale-[1.05] hover:shadow-2xl hover:shadow-gray-500/20 hover:-translate-y-2 transform-gpu">
-                      {/* Glass overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-gray-100/50 to-white/50 dark:from-gray-800/50 dark:to-gray-700/50 rounded-2xl"></div>
-                      
-                      <span className="relative z-10">Se connecter</span>
-                      
-                      {/* Bottom shadow for 3D effect */}
-                      <div className="absolute -bottom-1 left-2 right-2 h-2 bg-gray-400/20 dark:bg-gray-600/20 rounded-2xl blur-md group-hover:bottom-0 transition-all duration-500"></div>
-                    </Button>
-                  </Link>
+                  <AnimatedButton asChild size="lg" variant="outline" className="relative h-16 px-10 text-base font-medium rounded-2xl border-2 border-white/20 dark:border-gray-700/30 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl transition-all duration-500 hover:bg-white dark:hover:bg-gray-900 hover:scale-[1.05] hover:shadow-2xl hover:shadow-gray-500/20 hover:-translate-y-2 transform-gpu">
+                    <Link to="/login">Se connecter</Link>
+                  </AnimatedButton>
                 </div>
                 
                 {/* Enhanced Trust Indicators */}
@@ -544,26 +526,16 @@ const Index = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-8 justify-center pt-8">
-              <Link to="/register" className="group">
-                <Button size="lg" className="relative h-20 px-12 text-xl font-semibold bg-white text-gray-900 hover:bg-gray-100 rounded-2xl shadow-2xl transition-all duration-500 hover:scale-110 hover:shadow-3xl transform-gpu hover:-translate-y-3">
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-100/50 to-white/80 rounded-2xl"></div>
-                  
-                  <span className="relative z-10 flex items-center gap-3">
-                    Démarrer gratuitement
-                    <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" />
-                  </span>
-                  
-                  <div className="absolute -bottom-2 left-3 right-3 h-3 bg-gray-400/30 rounded-2xl blur-lg group-hover:bottom-0 transition-all duration-500"></div>
-                </Button>
-              </Link>
+              <AnimatedButton asChild size="lg" className="relative h-20 px-12 text-xl font-semibold bg-white text-gray-900 hover:bg-gray-100 rounded-2xl shadow-2xl transition-all duration-500 hover:scale-110 hover:shadow-3xl transform-gpu hover:-translate-y-3">
+                <Link to="/register" className="group flex items-center gap-3">
+                  Démarrer gratuitement
+                  <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" />
+                </Link>
+              </AnimatedButton>
               
-              <Button size="lg" variant="outline" className="relative h-20 px-12 text-xl font-medium border-white/30 text-white hover:bg-white/10 rounded-2xl backdrop-blur-xl transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:-translate-y-3 transform-gpu">
-                <div className="absolute inset-0 bg-white/5 rounded-2xl"></div>
-                
-                <span className="relative z-10">Demander une démonstration</span>
-                
-                <div className="absolute -bottom-2 left-3 right-3 h-3 bg-white/10 rounded-2xl blur-lg hover:bottom-0 transition-all duration-500"></div>
-              </Button>
+              <AnimatedButton asChild size="lg" variant="outline" className="relative h-20 px-12 text-xl font-medium border-white/30 text-white hover:bg-white/10 rounded-2xl backdrop-blur-xl transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:-translate-y-3 transform-gpu">
+                <Link to="/login">Demander une démonstration</Link>
+              </AnimatedButton>
             </div>
             
             <div className="flex items-center justify-center gap-12 pt-12 text-base opacity-80">
